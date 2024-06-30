@@ -12,8 +12,8 @@ public class Gui extends JFrame{
         this.setVisible(true);
         //this.setLayout(null);
 
-        
-        Creature player = new Creature();
+
+        Player player = new Player();
         Main.creatures.add(player);
         this.add(player);
         this.add(player.getToken());

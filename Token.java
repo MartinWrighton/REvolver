@@ -8,7 +8,8 @@ public class Token extends JComponent{
     private double xPos;
     private double yPos;
     private Color color;
-    public Token(){
+    private Creature creature;
+    public Token(Creature creature, Color color){
         this.xPos = 800;
         this.yPos = 450;
         this.color = Color.RED;
