@@ -9,7 +9,7 @@ public class Main {
         
 
 
-        int tickrate = 10000000;
+        int tickrate = 1000000;
         long timestamp = System.nanoTime();
         while (true){//mainloop
             if (System.nanoTime()-tickrate>timestamp){//if a tick has passed

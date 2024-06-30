@@ -28,8 +28,12 @@ public class Token extends JComponent{
         this.repaint();
     }
     public void move(int xChange, int yChange){
-        this.xPos = this.xPos + xChange;
-        this.yPos = this.yPos + yChange;
+        if (this.xPos + xChange > 0 && this.xPos + xChange < 1575){
+            this.xPos = this.xPos + xChange;
+        }
+        if (this.yPos + yChange > 0 && this.yPos + yChange < 850){
+            this.yPos = this.yPos + yChange;
+        }
         this.repaint();
     }
 }
