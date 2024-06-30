@@ -4,8 +4,7 @@ import javax.swing.AbstractAction;
 
 public class MoveAction extends AbstractAction {
     //sets the triggering creatures direction
-    // axis is the axis we want to change 0 is x axis and 1 is y axis
-    //value is how we want to move on that axis -1 is left/up 0 is stationary and 1 is right/down
+    // axis is the direction we want to change 0 is left 1 is right 2 is up and 3 down
     private int axis;
     private int value;
     public MoveAction(int direction,int value){

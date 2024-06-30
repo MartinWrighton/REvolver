@@ -4,13 +4,13 @@ import javax.swing.KeyStroke;
 public class Creature extends JComponent{
     //this is a model object, and should only be concerned with the internal representation of a creature
     private Token token;
-    private int moveSpeed;
+    private double moveSpeed;
     private int health;
     private int[] direction = {0,0,0,0};//left/right,up/down
 
     public Creature(){
         this.token = new Token();
-        this.moveSpeed = 1;
+        this.moveSpeed = 0.1; //where 1 is one pixel per tick
 
         //TODO this functionality should belong only to a player class
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"), "aPressed");

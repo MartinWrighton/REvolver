@@ -5,8 +5,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 public class Token extends JComponent{
     //This is a view object, and should only be concerned with the visual representation of a creature
-    private int xPos;
-    private int yPos;
+    private double xPos;
+    private double yPos;
     private Color color;
     public Token(){
         this.xPos = 800;
@@ -18,8 +18,8 @@ public class Token extends JComponent{
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(this.color);
-        g2.drawRect(this.xPos,this.yPos,10,10);
-        g2.fillRect(this.xPos,this.yPos, 10, 10);
+        g2.drawRect((int)this.xPos,(int)this.yPos,10,10);
+        g2.fillRect((int)this.xPos,(int)this.yPos, 10, 10);
     }
 
     public void goTo(int xPos, int yPos){
@@ -27,12 +27,12 @@ public class Token extends JComponent{
         this.yPos = yPos;
         this.repaint();
     }
-    public void move(int xChange, int yChange){
-        if (this.xPos + xChange > 0 && this.xPos + xChange < 1575){
-            this.xPos = this.xPos + xChange;
+    public void move(double d, double e){
+        if (this.xPos + d > 0 && this.xPos + d < 1575){
+            this.xPos = this.xPos + d;
         }
-        if (this.yPos + yChange > 0 && this.yPos + yChange < 850){
-            this.yPos = this.yPos + yChange;
+        if (this.yPos + e > 0 && this.yPos + e < 850){
+            this.yPos = this.yPos + e;
         }
         this.repaint();
     }
