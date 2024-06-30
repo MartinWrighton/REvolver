@@ -19,8 +19,7 @@ public class Main {
 
                 for (Token i : tokens){
                     i.step();
-                    
-                    
+                    i.pathfind();
                 }
                 if (gui.draw != null){
                     gui.draw.repaint();

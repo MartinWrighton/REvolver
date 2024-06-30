@@ -1,8 +1,6 @@
 import javax.swing.JComponent;
-
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+
 public class Token extends JComponent{
     //This is the simplest moving thing e.g a bullet or a creature
     protected double xPos;
@@ -53,4 +51,5 @@ public class Token extends JComponent{
     public void addDirection(int axis,int value){
         this.direction[axis] = value;
     }
+    public void pathfind(){}//exists to be overidden
 }

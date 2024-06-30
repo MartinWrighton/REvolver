@@ -20,13 +20,13 @@ public class Gui extends JFrame{
         Main.tokens.add(player);
         this.add(player);
 
-        System.out.println("Player created");
+    
        
-        Enemy enemy = new Enemy(100,100);
+        Enemy enemy = new Enemy(100,100,player);
         Main.tokens.add(enemy);
         this.add(enemy);
 
-        System.out.println("Enemy created");
+
         
         
         
