@@ -21,6 +21,16 @@ public class Creature extends JComponent{
         this.getActionMap().put("wPressed", new MoveAction(1,-1));
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("S"), "sPressed");
         this.getActionMap().put("sPressed", new MoveAction(1,1));
+
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released A"), "aReleased");
+        this.getActionMap().put("aReleased", new MoveAction(0,0));
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released D"), "dReleased");
+        this.getActionMap().put("dReleased", new MoveAction(0,0));
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released W"), "wReleased");
+        this.getActionMap().put("wReleased", new MoveAction(1,0));
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released S"), "sReleased");
+        this.getActionMap().put("sReleased", new MoveAction(1,0));
+
     }
 
 
