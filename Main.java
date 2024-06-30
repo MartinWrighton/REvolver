@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException{
 
 
-
+        int spawntimer = 0;
         int tickrate = 1000000;
         long timestamp = System.nanoTime();
         while (playing){//mainloop
@@ -17,20 +17,28 @@ public class Main {
                 timestamp = System.nanoTime();
 
 
-
+                //do token steps
                 for (int i = 0 ; i < tokens.size() ; i++){
                     tokens.get(i).step();
                 }
 
 
-
-                if (gui.draw != null){
+                //redraw all tokens
+                if (gui.draw != null){  
                     gui.draw.repaint();
+                }
+
+                //spawn new enemies
+                if (spawntimer > 500){
+                    gui.spawn();
+                    spawntimer = 0;
+                } else {
+                    spawntimer++;
                 }
             }
         }
     }
 }
 
-//TODO collision detection
+
 //TODO hold to shoot
