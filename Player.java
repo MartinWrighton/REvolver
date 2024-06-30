@@ -12,6 +12,8 @@ public class Player extends Creature {
         this.moveSpeed = 0.1; //where 1 is one pixel per tick
         this.xPos = xPos;
         this.yPos = yPos;
+        this.maxHP = 3;
+        this.HP = this.maxHP;
         //ability to control the player
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"), "aPressed");
         this.getActionMap().put("aPressed", new MoveAction(0,1));
@@ -31,7 +33,7 @@ public class Player extends Creature {
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released S"), "sReleased");
         this.getActionMap().put("sReleased", new MoveAction(3,0));
     }
-    //TODO get thisto shoop in the right direction
+    
     public void shoot(int x,int y){
         double xdif = x - xPos;
         double ydif = y - yPos;
@@ -39,6 +41,25 @@ public class Player extends Creature {
         double movx = xdif/both;
         double movy = ydif/both;
         Main.gui.shoot((int)xPos,(int)yPos,movx,movy);
-        
+    }
+    @Override
+    protected void postStep(){
+        for(int i = 0 ; i<Main.tokens.size();i++){
+            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy){
+                ((Creature) Main.tokens.get(i)).die();
+                takeDamage();
+            }
+        }
+    }
+    @Override
+    protected void takeDamage(){
+        this.HP-=1;
+        if (this.HP <= 0){
+            die();
+        }
+    }
+    @Override
+    protected void die(){
+        Main.playing = false;
     }
 }

@@ -1,5 +1,6 @@
 import javax.swing.JComponent;
 import java.awt.Color;
+import java.awt.Rectangle;
 
 public class Token extends JComponent{
     //This is the simplest moving thing e.g a bullet or a creature
@@ -9,7 +10,10 @@ public class Token extends JComponent{
     protected double moveSpeed;
     protected double[] direction = {0,0,0,0};//left/right,up/down
     protected int size;
-    public Token(){}
+    protected Rectangle hitbox;
+    public Token(){
+        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.size, this.size);
+    }
     /*
     @Override
     public void paint(Graphics g){
@@ -22,7 +26,7 @@ public class Token extends JComponent{
     public void goTo(int xPos, int yPos){
         this.xPos = xPos;
         this.yPos = yPos;
-        this.repaint();
+
     }
     public void move(double d, double e){
         if (this.xPos + d > 0 && this.xPos + d < 1575){
@@ -31,10 +35,16 @@ public class Token extends JComponent{
         if (this.yPos + e > 0 && this.yPos + e < 850){
             this.yPos = this.yPos + e;
         }
-        this.repaint();
+        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.size, this.size);
     }
 
     public void step(){
+        preStep();
+        moveStep();
+        postStep();
+    }
+
+    public void moveStep(){
         //moves the token depending on the queued direction
         double moveL = this.direction[0];
         double moveR = this.direction[1];
@@ -63,8 +73,6 @@ public class Token extends JComponent{
         this.move((moveR-moveL)*this.moveSpeed,(moveD-moveU)*this.moveSpeed);
     }
 
-
-
     public double[] getDirection(){
         return this.direction;
     }
@@ -74,5 +82,7 @@ public class Token extends JComponent{
     public void addDirection(int axis,double value){
         this.direction[axis] = value;
     }
-    public void pathfind(){}//exists to be overidden
+    //exist to be overidden
+    protected void preStep(){}
+    protected void postStep(){}
 }

@@ -12,10 +12,10 @@ public class DrawMaster extends JComponent{
         Graphics2D g2 = (Graphics2D) g;
 
 
-        for(Token i : Main.tokens){
-            g2.setColor(i.color);
-            g2.drawRect((int)i.xPos,(int)i.yPos,i.size,i.size);
-            g2.fillRect((int)i.xPos,(int)i.yPos, i.size, i.size);
+        for(int i = 0 ; i<Main.tokens.size();i++){
+            g2.setColor(Main.tokens.get(i).color);
+            g2.drawRect((int)Main.tokens.get(i).xPos,(int)Main.tokens.get(i).yPos,Main.tokens.get(i).size,Main.tokens.get(i).size);
+            g2.fillRect((int)Main.tokens.get(i).xPos,(int)Main.tokens.get(i).yPos, Main.tokens.get(i).size, Main.tokens.get(i).size);
         }
     }
 }

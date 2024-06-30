@@ -15,7 +15,7 @@ public class Gui extends JFrame{
         this.setVisible(true);
         //this.setLayout(null);
 
-        DrawMaster draw = new DrawMaster();
+        draw = new DrawMaster();
         this.add(draw);
         draw.setVisible(false);
         draw.setVisible(true);
@@ -30,10 +30,18 @@ public class Gui extends JFrame{
         Main.tokens.add(enemy);
         this.add(enemy);
 
+        enemy = new Enemy(150,100,player);
+        Main.tokens.add(enemy);
+        this.add(enemy);
+
+        enemy = new Enemy(200,100,player);
+        Main.tokens.add(enemy);
+        this.add(enemy);
+
 
         
         
-        
+  
     }
 
     public void shoot(int xPos, int yPos,double movx, double movy){

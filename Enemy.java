@@ -10,10 +10,11 @@ public class Enemy extends Creature {
         this.yPos = yPos;
         this.moveSpeed = 0.09;
         this.target = target;
+        this.maxHP = 3;
+        this.HP = this.maxHP;
     }
     @Override
-    public void pathfind(){
-        
+    protected void preStep(){
         double difx = Math.abs(target.xPos - this.xPos);
         double dify = Math.abs(target.yPos - this.yPos);
         double distance = difx + dify;
@@ -46,31 +47,27 @@ public class Enemy extends Creature {
             this.addDirection(2,0);
             this.addDirection(3, 0);
         }
+    }
 
+    @Override
+    protected void postStep(){
+        for(int i = 0 ; i<Main.tokens.size();i++){
+            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Projectile){
+                Main.tokens.remove(i);
+                takeDamage();
+            }
+        }
+    }
+    @Override
+    protected void takeDamage(){
+        this.HP-=1;
+        if (this.HP <= 0){
+            die();
+        }
+    }
 
-
-        /*
-        if (this.target.xPos < this.xPos){
-            this.addDirection(0, 1);
-        } else {
-            this.addDirection(0, 0);
-        }
-        if (this.target.xPos > this.xPos){
-            this.addDirection(1, 1);
-        } else {
-            this.addDirection(1, 0);
-        }
-        if (this.target.yPos < this.yPos){
-            this.addDirection(2, 1);
-        } else {
-            this.addDirection(2, 0);
-        }
-        if (this.target.yPos > this.yPos){
-            this.addDirection(3, 1);
-        } else {
-            this.addDirection(3, 0);
-        }
-        */
-
+    @Override
+    protected void die(){
+        Main.tokens.remove(this);
     }
 }
