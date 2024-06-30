@@ -4,7 +4,7 @@ public class Creature extends Token{
 
     public Creature(){
         super();
-        
+        this.size = 10;
     }
 
 

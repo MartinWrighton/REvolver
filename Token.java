@@ -7,10 +7,9 @@ public class Token extends JComponent{
     protected double yPos;
     protected Color color;
     protected double moveSpeed;
-    private double[] direction = {0,0,0,0};//left/right,up/down
-    public Token(){
-
-    }
+    protected double[] direction = {0,0,0,0};//left/right,up/down
+    protected int size;
+    public Token(){}
     /*
     @Override
     public void paint(Graphics g){

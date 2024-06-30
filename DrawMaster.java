@@ -14,8 +14,8 @@ public class DrawMaster extends JComponent{
 
         for(Token i : Main.tokens){
             g2.setColor(i.color);
-            g2.drawRect((int)i.xPos,(int)i.yPos,10,10);
-            g2.fillRect((int)i.xPos,(int)i.yPos, 10, 10);
+            g2.drawRect((int)i.xPos,(int)i.yPos,i.size,i.size);
+            g2.fillRect((int)i.xPos,(int)i.yPos, i.size, i.size);
         }
     }
 }

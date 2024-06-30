@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Main {
     public static ArrayList<Token> tokens = new ArrayList<Token>();
     public static Gui gui = new Gui();
+    public static Player player;
     public static void main(String[] args) throws InterruptedException{
 
         
