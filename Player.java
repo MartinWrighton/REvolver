@@ -4,12 +4,14 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 public class Player extends Creature {
+    //this is the player, to be controlled
 
-
-    public Player(){
+    public Player(int xPos,int yPos){
         super();
         this.color = Color.RED;
-
+        this.moveSpeed = 0.1; //where 1 is one pixel per tick
+        this.xPos = xPos;
+        this.yPos = yPos;
         //ability to control the player
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"), "aPressed");
         this.getActionMap().put("aPressed", new MoveAction(0,1));

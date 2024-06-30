@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class Main {
-    public static ArrayList<Creature> creatures = new ArrayList<Creature>();
-
+    public static ArrayList<Token> tokens = new ArrayList<Token>();
+    public static Gui gui = new Gui();
     public static void main(String[] args) throws InterruptedException{
 
-        Gui frame = new Gui();
         
-
+        
+        
 
         int tickrate = 1000000;
         long timestamp = System.nanoTime();
@@ -17,11 +17,13 @@ public class Main {
             
 
 
-                for (Creature i : creatures){
+                for (Token i : tokens){
                     i.step();
-                    //System.out.println(i.getDirection()[0]+i.getDirection()[1]);
-
                     
+                    
+                }
+                if (gui.draw != null){
+                    gui.draw.repaint();
                 }
             }
         }
