@@ -10,9 +10,9 @@ public class Click extends MouseAdapter{
     public void mousePressed(MouseEvent e){
         System.out.println("Player is Shooting");
         Main.player.setShooting(true);
-        Main.player.setShootingAt(new int[] {e.getX(),e.getY()});
+        Main.player.setShootingAt(new int[] {e.getX()-35,e.getY()-45});//for some reason it shoots at a point near the cursor so we adjust manually
         
-        //for some reason it shoots at a point near the cursor so we adjust manually
+        
         
     }
 
@@ -25,7 +25,7 @@ public class Click extends MouseAdapter{
 
     @Override
     public void mouseDragged(MouseEvent e){
-        Main.player.setShootingAt(new int[] {e.getX(),e.getY()});
+        Main.player.setShootingAt(new int[] {e.getX()-35,e.getY()-45});
     }
 
 }
