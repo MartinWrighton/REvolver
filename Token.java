@@ -29,12 +29,17 @@ public class Token extends JComponent{
 
     }
     public void move(double d, double e){
-        if (this.xPos + d > 0 && this.xPos + d < 1575){
+        /* 
+        if (this.xPos + d > 0 && this.xPos + d < Main.screenWidth-25){
             this.xPos = this.xPos + d;
         }
-        if (this.yPos + e > 0 && this.yPos + e < 850){
+        if (this.yPos + e > 0 && this.yPos + e < Main.screenHeight-50){
             this.yPos = this.yPos + e;
         }
+        */
+        this.xPos = this.xPos + d;
+        this.yPos = this.yPos + e;
+        
         this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.size, this.size);
     }
 

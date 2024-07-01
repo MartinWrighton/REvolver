@@ -10,7 +10,7 @@ public class Gui extends JFrame{
 
         this.setTitle("REvolver");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1600,900);
+        this.setSize(Main.screenWidth,Main.screenHeight);
         this.addMouseListener(new Click());
         this.getContentPane().setBackground(new Color(212,255,171));
         this.setVisible(true);
@@ -21,7 +21,7 @@ public class Gui extends JFrame{
         draw.setVisible(false);
         draw.setVisible(true);
 
-        Player player = new Player(787,425);
+        Player player = new Player((Main.screenWidth-25)/2,(Main.screenHeight-50)/2);
         Main.tokens.add(player);
         this.add(player);
         Main.player = player;
@@ -45,19 +45,19 @@ public class Gui extends JFrame{
         if (zone==0){
             //left
             xSpawn = 5;
-            ySpawn = random.nextInt(845);
+            ySpawn = random.nextInt(Main.screenHeight-55);
         } else if (zone==1){
             //right
-            xSpawn = 1570;
-            ySpawn = random.nextInt(845);
+            xSpawn = Main.screenWidth-30;
+            ySpawn = random.nextInt(Main.screenHeight-55);
         } else if (zone==2){
             //top
             ySpawn = 0;
-            xSpawn = random.nextInt(1570);
+            xSpawn = random.nextInt(Main.screenWidth-30);
         } else if (zone==3){
             //bottom
-            ySpawn = 845;
-            xSpawn = random.nextInt(1570);
+            ySpawn = Main.screenHeight-55;
+            xSpawn = random.nextInt(Main.screenWidth-30);
         }
 
         Enemy enemy = new Enemy(xSpawn,ySpawn,Main.player);
