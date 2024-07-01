@@ -39,7 +39,6 @@ public class Enemy extends Creature {
         double movey = dify/distance;;
 
         
-
         if (this.target.xPos < this.xPos){
             this.addDirection(0, movex);
         } else if (this.target.xPos > this.xPos){
