@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,6 +63,32 @@ public class Enemy extends Creature {
             this.addDirection(3, 0);
         }
     }
+    @Override
+    public void move(double x, double y){
+        /* 
+        if (this.xPos + d > 0 && this.xPos + d < Main.screenWidth-25){
+            this.xPos = this.xPos + d;
+        }
+        if (this.yPos + e > 0 && this.yPos + e < Main.screenHeight-50){
+            this.yPos = this.yPos + e;
+        }
+        */
+        this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos+y), this.xHit, this.yHit);
+        //jostle checks
+        boolean clear = true;
+        for (int i = 0; i<Main.tokens.size();i++){
+            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
+                clear = false;
+            }
+        }
+        if (clear){
+            this.xPos = this.xPos + x;
+            this.yPos = this.yPos + y;
+        } else {
+            this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.xHit, this.yHit);
+        }
+    }
+    
 
     @Override
     protected void postStep(){
