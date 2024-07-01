@@ -44,7 +44,7 @@ public class Token extends JComponent{
         postStep();
     }
 
-    public void moveStep(){
+    protected void moveStep(){
         //moves the token depending on the queued direction
         double moveL = this.direction[0];
         double moveR = this.direction[1];
