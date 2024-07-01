@@ -1,6 +1,7 @@
 import javax.swing.JComponent;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public class Token extends JComponent{
     //This is the simplest moving thing e.g a bullet or a creature
@@ -11,6 +12,7 @@ public class Token extends JComponent{
     protected double[] direction = {0,0,0,0};//left/right,up/down
     protected int size;
     protected Rectangle hitbox;
+    protected BufferedImage image;
     public Token(){
         this.hitbox = new Rectangle((int)xPos, (int)yPos, this.size, this.size);
     }

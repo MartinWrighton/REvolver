@@ -1,5 +1,9 @@
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class Enemy extends Creature {
     //this is an enemy that will attack the player
@@ -14,7 +18,11 @@ public class Enemy extends Creature {
         this.target = target;
         this.maxHP = 3;
         this.HP = this.maxHP;
-        
+        try {
+            this.image = ImageIO.read(new File("resources\\Gerbil.PNG"));
+        } catch (IOException e) {
+            System.out.println("Failed to load Enemy image");
+        }
     }
     @Override
     protected void preStep(){
