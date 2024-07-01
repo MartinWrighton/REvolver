@@ -16,11 +16,14 @@ public class Player extends Creature {
         this.moveSpeed = 0.1; //where 1 is one pixel per tick
         this.xPos = xPos;
         this.yPos = yPos;
-        this.hitbox = new Rectangle(xPos, yPos, size, size);
+        this.hitbox = new Rectangle(xPos, yPos, xHit, yHit);
         this.maxHP = 3;
         this.HP = this.maxHP;
         try {
-            this.tokenImage = ImageIO.read(new File("resources\\Gerbil.PNG"));
+            this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerLeftFoot.PNG")));
+            this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
+            this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerRightFoot.PNG")));
+            this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
         } catch (IOException e) {
             System.out.println("Failed to load Player image");
         }
