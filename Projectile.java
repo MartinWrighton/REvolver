@@ -12,6 +12,8 @@ public class Projectile extends Token{
         this.moveSpeed = 0.5;
         this.penetration = 1;
         this.damage = 1;
+        this.xHit = 5;
+        this.yHit = 5;
     }
 
     @Override

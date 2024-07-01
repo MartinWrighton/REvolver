@@ -17,7 +17,8 @@ public class Token extends JComponent{
     protected int xHit;
     protected int yHit;
     protected ArrayList<BufferedImage> tokenImages = new ArrayList<BufferedImage>();
-    protected int animationFrame = 0;
+    protected double animationFrame = 0;
+    protected double animationSpeed = 0.005;
     public Token(){
         this.hitbox = new Rectangle((int)xPos, (int)yPos, this.xHit, this.yHit);
     }
@@ -51,7 +52,9 @@ public class Token extends JComponent{
     }
 
     public void step(){
+        animationStep();
         preStep();
+        pathfind();
         moveStep();
         postStep();
     }
@@ -94,7 +97,15 @@ public class Token extends JComponent{
     public void addDirection(int axis,double value){
         this.direction[axis] = value;
     }
-    //exist to be overidden
+    protected void animationStep(){
+        this.animationFrame+=animationSpeed;
+        if ((int)this.animationFrame>this.tokenImages.size()-1){
+            this.animationFrame=0;
+        }
+    }
     protected void preStep(){}
+
+    protected void pathfind(){}
+        
     protected void postStep(){}
 }

@@ -28,7 +28,7 @@ public class Enemy extends Creature {
         }
     }
     @Override
-    protected void preStep(){
+    protected void pathfind(){
         double difx = Math.abs(target.xPos - this.xPos);
         double dify = Math.abs(target.yPos - this.yPos);
         double distance = difx + dify;
