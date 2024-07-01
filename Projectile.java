@@ -15,7 +15,7 @@ public class Projectile extends Token{
 
     @Override
     protected void postStep(){
-        if (xPos < 10 || xPos > 1570 || yPos < 10 || yPos > 845){
+        if (xPos < 10 || xPos > Main.screenWidth-25 || yPos < 10 || yPos > Main.screenHeight-50){
             Main.tokens.remove(this);
         }
     }

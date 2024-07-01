@@ -6,7 +6,7 @@ public class Creature extends Token{
     
     public Creature(){
         super();
-        this.size = 10;
+        this.size = 50;
     }
 
     protected void takeDamage(int damage){

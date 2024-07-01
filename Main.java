@@ -1,12 +1,18 @@
+
 import java.util.ArrayList;
+
 
 public class Main {
     public static ArrayList<Token> tokens = new ArrayList<Token>();
+    public static int screenWidth = 1600;
+    public static int screenHeight = 900;
     public static Gui gui = new Gui();
     public static Player player;
     public static boolean playing = true;
+    public static double worldX;
+    public static double worldY;
     public static void main(String[] args) throws InterruptedException{
-
+        gui.add(player);//for some reason we need to add the player here and not in gui
 
         int spawntimer = 0;
         int tickrate = 1000000;
