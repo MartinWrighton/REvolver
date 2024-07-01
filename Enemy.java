@@ -73,20 +73,33 @@ public class Enemy extends Creature {
             this.yPos = this.yPos + e;
         }
         */
-        this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos+y), this.xHit, this.yHit);
+        
         //jostle checks
-        boolean clear = true;
+
         for (int i = 0; i<Main.tokens.size();i++){
+            //diagonal
+            /*
+            this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos+y), this.xHit, this.yHit);
             if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
-                clear = false;
+                x = 0;
+                y = 0;
+            }
+            */
+            //only x
+            this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos), this.xHit, this.yHit);
+            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
+                x = 0;
+            }
+            //only y
+            this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+y), this.xHit, this.yHit);
+            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
+                y = 0;
             }
         }
-        if (clear){
-            this.xPos = this.xPos + x;
-            this.yPos = this.yPos + y;
-        } else {
-            this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.xHit, this.yHit);
-        }
+        this.xPos = this.xPos + x;
+        this.yPos = this.yPos + y;
+        this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.xHit, this.yHit);
+
     }
     
 

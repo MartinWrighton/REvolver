@@ -21,7 +21,7 @@ public class Player extends Creature {
         this.hitbox = new Rectangle(xPos, yPos, xHit, yHit);
         this.maxHP = 3;
         this.HP = this.maxHP;
-        this.weapon = new SMG(this);
+        this.weapon = new Revolver(this);
         try {
             this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerLeftFoot.PNG")));
             this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
