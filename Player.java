@@ -19,7 +19,7 @@ public class Player extends Creature {
         this.xPos = xPos;
         this.yPos = yPos;
         this.hitbox = new Rectangle(xPos, yPos, xHit, yHit);
-        this.maxHP = 3;
+        this.maxHP = 300;
         this.HP = this.maxHP;
         this.weapon = new Revolver(this);
         try {
