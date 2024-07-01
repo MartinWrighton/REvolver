@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Rectangle;
 
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
@@ -12,6 +13,7 @@ public class Player extends Creature {
         this.moveSpeed = 0.1; //where 1 is one pixel per tick
         this.xPos = xPos;
         this.yPos = yPos;
+        this.hitbox = new Rectangle(xPos, yPos, size, size);
         this.maxHP = 3;
         this.HP = this.maxHP;
         //ability to control the player
@@ -79,10 +81,10 @@ public class Player extends Creature {
     }
     @Override
     protected void postStep(){
+        System.out.println(this.hitbox);
         for(int i = 0 ; i<Main.tokens.size();i++){
             if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy){
                 ((Creature) Main.tokens.get(i)).die();
-                System.out.println("hit");
                 takeDamage();
             }
         }
