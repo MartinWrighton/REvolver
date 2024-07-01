@@ -76,9 +76,12 @@ public class Player extends Creature {
                 Main.tokens.get(i).move((moveR-moveL)*this.moveSpeed*-1,(moveD-moveU)*this.moveSpeed*-1);//invert movespeed and move enemies instead
             }
         }
-
+        //move the map beneath our feet
+        Main.worldX+=((moveR-moveL)*this.moveSpeed*-1);
+        Main.worldY+=(moveD-moveU)*this.moveSpeed*-1;
 
     }
+
     @Override
     protected void postStep(){
         for(int i = 0 ; i<Main.tokens.size();i++){

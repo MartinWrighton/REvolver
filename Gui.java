@@ -1,13 +1,13 @@
-
-
 import java.awt.Color;
 import java.util.Random;
-
 import javax.swing.JFrame;
 
 public class Gui extends JFrame{
     public DrawMaster draw;
+
     public Gui(){
+
+
         this.setTitle("REvolver");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(1600,900);

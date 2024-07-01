@@ -5,6 +5,10 @@ public class Main {
     public static Gui gui = new Gui();
     public static Player player;
     public static boolean playing = true;
+    public static double worldX;
+    public static double worldY;
+    public static int screenWidth = 1600;
+    public static int screenHeight = 900;
     public static void main(String[] args) throws InterruptedException{
 
 
