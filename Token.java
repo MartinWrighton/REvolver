@@ -35,7 +35,7 @@ public class Token extends JComponent{
         if (this.yPos + e > 0 && this.yPos + e < 850){
             this.yPos = this.yPos + e;
         }
-        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.size, this.size);
+        this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.size, this.size);
     }
 
     public void step(){
@@ -44,7 +44,7 @@ public class Token extends JComponent{
         postStep();
     }
 
-    public void moveStep(){
+    protected void moveStep(){
         //moves the token depending on the queued direction
         double moveL = this.direction[0];
         double moveR = this.direction[1];

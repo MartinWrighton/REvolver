@@ -9,7 +9,12 @@ public class Creature extends Token{
         this.size = 10;
     }
 
-    protected void takeDamage(){}
+    protected void takeDamage(int damage){
+        this.HP-=damage;
+        if (this.HP <= 0){
+            die();
+        }
+    }
     protected void die(){}
     
 }

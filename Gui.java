@@ -21,7 +21,7 @@ public class Gui extends JFrame{
         draw.setVisible(false);
         draw.setVisible(true);
 
-        Player player = new Player(800,450);
+        Player player = new Player(787,425);
         Main.tokens.add(player);
         this.add(player);
         Main.player = player;

@@ -1,8 +1,10 @@
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class Enemy extends Creature {
     //this is an enemy that will attack the player
     private Token target;
+    private ArrayList<Token> noContact = new ArrayList<Token>();//to prevent hitting same projectile again
     public Enemy(int xPos,int yPos,Token target){
         super();
         this.color = Color.BLUE;
@@ -12,6 +14,7 @@ public class Enemy extends Creature {
         this.target = target;
         this.maxHP = 3;
         this.HP = this.maxHP;
+        
     }
     @Override
     protected void preStep(){
@@ -51,20 +54,23 @@ public class Enemy extends Creature {
 
     @Override
     protected void postStep(){
+        //includes no contact to avoid hitting projectiles twice
+        ArrayList<Token> currentContact = new ArrayList<Token>(this.noContact);
+        this.noContact.clear();
         for(int i = 0 ; i<Main.tokens.size();i++){
             if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Projectile){
-                Main.tokens.remove(i);
-                takeDamage();
+                Projectile bullet = ((Projectile) Main.tokens.get(i));
+                
+                if (!currentContact.contains(bullet)){
+                    bullet.hit();
+                    takeDamage(bullet.damage);
+                }
+                this.noContact.add(bullet);
             }
         }
     }
-    @Override
-    protected void takeDamage(){
-        this.HP-=1;
-        if (this.HP <= 0){
-            die();
-        }
-    }
+    
+    
 
     @Override
     protected void die(){
