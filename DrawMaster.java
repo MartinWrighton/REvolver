@@ -16,12 +16,18 @@ public class DrawMaster extends JComponent{
         Graphics2D g2 = (Graphics2D) g;
         //attempting image work
         try {
-            BufferedImage img = ImageIO.read(new File("resources\\Gerbil.PNG"));
+            BufferedImage img = ImageIO.read(new File("resources\\PixelGrass.jpg"));
 
-            int space = (int)Main.worldX;
-            while (space>-img.getWidth()){
-                g2.drawImage(img,(int) space,(int)Main.worldY,null);
-                space-=img.getWidth();
+
+            int yStart = ((int)Main.worldY%img.getHeight())-img.getHeight();
+            for (int j = (Main.screenWidth/img.getWidth())+2;j>0;j--){
+                int xStart = ((int)Main.worldX%img.getWidth())-img.getWidth();
+                for (int i = (Main.screenWidth/img.getWidth())+2;i>0;i--){
+                    xStart+=img.getWidth();
+                    g2.drawImage(img,(int) xStart,(int)yStart,null);
+                    
+                }
+                yStart+=img.getHeight();
             }
 
             
