@@ -6,8 +6,11 @@ public class Revolver extends Weapon{
         this.clipSize = 6;
         this.clip = this.clipSize;
         this.reloadTime = 3;
-        this.damage = 1;
-        this.penetration = 1;
+        this.damage = 3;
+        this.penetration = 0;
+        this.projectileSpeed = 0.5;
+        this.projectileSize = 5;
+        this.spread = 0.05;
     }
 
 }

@@ -17,7 +17,7 @@ public class Enemy extends Creature {
         this.yPos = yPos;
         this.moveSpeed = 0.09;
         this.target = target;
-        this.maxHP = 3;
+        this.maxHP = 6;
         this.HP = this.maxHP;
         try {
             this.tokenImages.add(ImageIO.read(new File("resources\\PixelEnemyLeftFoot.PNG")));
