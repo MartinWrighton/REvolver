@@ -40,12 +40,19 @@ public class DrawMaster extends JComponent{
 
         for(int i = 0 ; i<Main.tokens.size();i++){
             Token token = Main.tokens.get(i);
-            g2.setColor(Main.tokens.get(i).color);
-            g2.drawRect((int)token.xPos,(int)token.yPos,token.size,token.size);
-            g2.fillRect((int)token.xPos,(int)token.yPos, token.size,token.size);
-            if (token.image != null){
-                g2.drawImage(token.image,(int) token.xPos,(int)token.yPos,token.size,token.size,null);
+            
+            if (token.tokenImage != null){
+                if (token.xPos>Main.player.xPos){
+                    g2.drawImage(token.tokenImage,(int) token.xPos,(int)token.yPos,token.size,token.size,null);
+                } else {
+                    g2.drawImage(token.tokenImage,(int) token.xPos+token.size,(int)token.yPos,-token.size,token.size,null);
+                }
+            } else {
+                g2.setColor(Main.tokens.get(i).color);
+                g2.drawRect((int)token.xPos,(int)token.yPos,token.size,token.size);
+                g2.fillRect((int)token.xPos,(int)token.yPos, token.size,token.size);
             }
+
         }
     }
 }

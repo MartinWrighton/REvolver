@@ -1,6 +1,9 @@
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
@@ -16,6 +19,11 @@ public class Player extends Creature {
         this.hitbox = new Rectangle(xPos, yPos, size, size);
         this.maxHP = 3;
         this.HP = this.maxHP;
+        try {
+            this.tokenImage = ImageIO.read(new File("resources\\Gerbil.PNG"));
+        } catch (IOException e) {
+            System.out.println("Failed to load Player image");
+        }
         //ability to control the player
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"), "aPressed");
         this.getActionMap().put("aPressed", new MoveAction(0,1));

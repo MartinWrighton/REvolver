@@ -12,7 +12,7 @@ public class Token extends JComponent{
     protected double[] direction = {0,0,0,0};//left/right,up/down
     protected int size;
     protected Rectangle hitbox;
-    protected BufferedImage image;
+    protected BufferedImage tokenImage;
     public Token(){
         this.hitbox = new Rectangle((int)xPos, (int)yPos, this.size, this.size);
     }

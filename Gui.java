@@ -23,7 +23,6 @@ public class Gui extends JFrame{
 
         Player player = new Player((Main.screenWidth-25)/2,(Main.screenHeight-50)/2);
         Main.tokens.add(player);
-        this.add(player);
         Main.player = player;
     
         /*
@@ -44,20 +43,20 @@ public class Gui extends JFrame{
         int zone = random.nextInt(4);
         if (zone==0){
             //left
-            xSpawn = 5;
-            ySpawn = random.nextInt(Main.screenHeight-55);
+            xSpawn = -50;
+            ySpawn = random.nextInt(Main.screenHeight+50);
         } else if (zone==1){
             //right
-            xSpawn = Main.screenWidth-30;
-            ySpawn = random.nextInt(Main.screenHeight-55);
+            xSpawn = Main.screenWidth+30;
+            ySpawn = random.nextInt(Main.screenHeight+55);
         } else if (zone==2){
             //top
-            ySpawn = 0;
-            xSpawn = random.nextInt(Main.screenWidth-30);
+            ySpawn = -50;
+            xSpawn = random.nextInt(Main.screenWidth+30);
         } else if (zone==3){
             //bottom
-            ySpawn = Main.screenHeight-55;
-            xSpawn = random.nextInt(Main.screenWidth-30);
+            ySpawn = Main.screenHeight+55;
+            xSpawn = random.nextInt(Main.screenWidth+30);
         }
 
         Enemy enemy = new Enemy(xSpawn,ySpawn,Main.player);
