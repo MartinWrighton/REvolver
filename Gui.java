@@ -21,25 +21,16 @@ public class Gui extends JFrame{
         draw.setVisible(false);
         draw.setVisible(true);
 
-        Player player = new Player(600,450);
+        Player player = new Player(800,450);
         Main.tokens.add(player);
         this.add(player);
         Main.player = player;
     
-       
-        Enemy enemy = new Enemy(100,100,player);
+        /*
+        Enemy enemy = new Enemy(500,450,player);
         Main.tokens.add(enemy);
         this.add(enemy);
-
-        enemy = new Enemy(150,100,player);
-        Main.tokens.add(enemy);
-        this.add(enemy);
-
-        enemy = new Enemy(200,100,player);
-        Main.tokens.add(enemy);
-        this.add(enemy);
-
-
+        */
         
         
   
