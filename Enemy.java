@@ -19,7 +19,10 @@ public class Enemy extends Creature {
         this.maxHP = 3;
         this.HP = this.maxHP;
         try {
-            this.tokenImage = ImageIO.read(new File("resources\\PixelSpider.PNG"));
+            this.tokenImages.add(ImageIO.read(new File("resources\\PixelEnemyLeftFoot.PNG")));
+            this.tokenImages.add(ImageIO.read(new File("resources\\PixelEnemyNeutral.PNG")));
+            this.tokenImages.add(ImageIO.read(new File("resources\\PixelEnemyRightFoot.PNG")));
+            this.tokenImages.add(ImageIO.read(new File("resources\\PixelEnemyNeutral.PNG")));
         } catch (IOException e) {
             System.out.println("Failed to load Enemy image");
         }

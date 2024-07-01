@@ -7,7 +7,8 @@ public class Projectile extends Token{
         this.color = Color.YELLOW;
         this.xPos = xPos;
         this.yPos = yPos;
-        this.size = 5;
+        this.xSize = 5;
+        this.ySize = 5;
         this.moveSpeed = 0.5;
         this.penetration = 1;
         this.damage = 1;

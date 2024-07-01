@@ -2,6 +2,7 @@ import javax.swing.JComponent;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Token extends JComponent{
     //This is the simplest moving thing e.g a bullet or a creature
@@ -10,11 +11,15 @@ public class Token extends JComponent{
     protected Color color;
     protected double moveSpeed;
     protected double[] direction = {0,0,0,0};//left/right,up/down
-    protected int size;
+    protected int xSize;
+    protected int ySize;
     protected Rectangle hitbox;
-    protected BufferedImage tokenImage;
+    protected int xHit;
+    protected int yHit;
+    protected ArrayList<BufferedImage> tokenImages = new ArrayList<BufferedImage>();
+    protected int animationFrame = 0;
     public Token(){
-        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.size, this.size);
+        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.xHit, this.yHit);
     }
     /*
     @Override
@@ -42,7 +47,7 @@ public class Token extends JComponent{
         this.xPos = this.xPos + d;
         this.yPos = this.yPos + e;
         
-        this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.size, this.size);
+        this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.xHit, this.yHit);
     }
 
     public void step(){
