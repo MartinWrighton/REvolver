@@ -9,7 +9,10 @@ import javax.swing.KeyStroke;
 
 public class Player extends Creature {
     //this is the player, to be controlled
-
+    private boolean isShooting = false;
+    private int[] shootingAt;
+    private double fireDelay;
+    private double fireProgress;
     public Player(int xPos,int yPos){
         super();
         this.color = Color.RED;
@@ -19,6 +22,8 @@ public class Player extends Creature {
         this.hitbox = new Rectangle(xPos, yPos, xHit, yHit);
         this.maxHP = 3;
         this.HP = this.maxHP;
+        this.fireDelay = 0.3;
+        this.fireProgress = 1;
         try {
             this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerLeftFoot.PNG")));
             this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
@@ -53,7 +58,20 @@ public class Player extends Creature {
         double both = Math.abs(xdif) + Math.abs(ydif);
         double movx = xdif/both;
         double movy = ydif/both;
-        Main.gui.shoot((int)xPos,(int)yPos,movx,movy);
+        Main.gui.shoot((int)xPos+25,(int)yPos+10,movx,movy);
+    }
+
+    @Override
+    protected void preStep(){
+        //shooting
+        this.fireProgress+=0.001;
+        if (this.isShooting){
+            if (this.fireProgress>fireDelay){
+                this.fireProgress = 0;
+                this.shoot(this.shootingAt[0], this.shootingAt[1]);
+            }
+            
+        }
     }
     @Override
     protected void moveStep(){
@@ -106,5 +124,12 @@ public class Player extends Creature {
     @Override
     protected void die(){
         Main.playing = false;
+    }
+
+    public void setShooting(boolean set){
+        this.isShooting = set;
+    }
+    public void setShootingAt(int[] at){
+        this.shootingAt = at;
     }
 }

@@ -11,7 +11,9 @@ public class Gui extends JFrame{
         this.setTitle("REvolver");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(Main.screenWidth,Main.screenHeight);
-        this.addMouseListener(new Click());
+        Click mouseClick = new Click();
+        this.addMouseListener(mouseClick);
+        this.addMouseMotionListener(mouseClick);
         this.getContentPane().setBackground(new Color(212,255,171));
         this.setVisible(true);
         //this.setLayout(null);
