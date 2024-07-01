@@ -53,18 +53,14 @@ public class Enemy extends Creature {
     protected void postStep(){
         for(int i = 0 ; i<Main.tokens.size();i++){
             if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Projectile){
-                Main.tokens.remove(i);
-                takeDamage();
+                Projectile bullet = ((Projectile) Main.tokens.get(i));
+                bullet.hit();
+                takeDamage(bullet.damage);
             }
         }
     }
-    @Override
-    protected void takeDamage(){
-        this.HP-=1;
-        if (this.HP <= 0){
-            die();
-        }
-    }
+    
+    
 
     @Override
     protected void die(){

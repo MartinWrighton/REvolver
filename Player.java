@@ -81,21 +81,14 @@ public class Player extends Creature {
     }
     @Override
     protected void postStep(){
-        System.out.println(this.hitbox);
         for(int i = 0 ; i<Main.tokens.size();i++){
             if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy){
                 ((Creature) Main.tokens.get(i)).die();
-                takeDamage();
+                takeDamage(1);
             }
         }
     }
-    @Override
-    protected void takeDamage(){
-        this.HP-=1;
-        if (this.HP <= 0){
-            die();
-        }
-    }
+
     @Override
     protected void die(){
         Main.playing = false;
