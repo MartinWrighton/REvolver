@@ -23,6 +23,14 @@ public class Main {
                 timestamp = System.nanoTime();
 
 
+                //spawn new enemies
+                if (spawntimer > 500){
+                    gui.spawn();
+                    spawntimer = 0;
+                } else {
+                    spawntimer++;
+                }
+
                 //do token steps
                 for (int i = 0 ; i < tokens.size() ; i++){
                     tokens.get(i).step();
@@ -34,13 +42,6 @@ public class Main {
                     gui.draw.repaint();
                 }
 
-                //spawn new enemies
-                if (spawntimer > 500){
-                    gui.spawn();
-                    spawntimer = 0;
-                } else {
-                    spawntimer++;
-                }
             }
         }
     }

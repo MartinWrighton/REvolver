@@ -33,7 +33,6 @@ public class Gui extends JFrame{
         this.add(enemy);
         */
         
-        
   
     }
 

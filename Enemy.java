@@ -32,13 +32,9 @@ public class Enemy extends Creature {
     protected void pathfind(){
         double difx = Math.abs(target.xPos - this.xPos);
         double dify = Math.abs(target.yPos - this.yPos);
-        
         double distance = Math.sqrt(difx*difx + dify*dify);
         double movex = difx/distance;
-
         double movey = dify/distance;;
-
-        
         if (this.target.xPos < this.xPos){
             this.addDirection(0, movex);
         } else if (this.target.xPos > this.xPos){
@@ -89,10 +85,12 @@ public class Enemy extends Creature {
                 y = 0;
             }
         }
+        super.move(x,y);
+        /*
         this.xPos = this.xPos + x;
         this.yPos = this.yPos + y;
         this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.xHit, this.yHit);
-
+        */
     }
     
 

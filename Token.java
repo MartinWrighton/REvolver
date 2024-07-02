@@ -37,7 +37,8 @@ public class Token extends JComponent{
 
     }
     public void move(double d, double e){
-        /* 
+        /*
+        //prevent leaving screen
         if (this.xPos + d > 0 && this.xPos + d < Main.screenWidth-25){
             this.xPos = this.xPos + d;
         }
@@ -65,18 +66,31 @@ public class Token extends JComponent{
         double moveR = this.direction[1];
         double moveU = this.direction[2];
         double moveD = this.direction[3];
+
         //preventing diagonal movement from being faster
         double dify = Math.abs(moveU-moveD);
         double difx = Math.abs(moveL-moveR);
         double both = Math.sqrt(difx*difx+dify*dify);
         double movex = difx/both;
         double movey = dify/both;
-        moveL = moveL*movex;
-        moveR = moveR*movex;
-        moveU = moveU*movey;
-        moveD = moveD*movey;
+        if (moveL>moveR){
+            moveL = movex;
+        } else {
+            moveR = movex;
+        }
+        if (moveU>moveD){
+            moveU = movey;
+        } else {
+            moveD = movey;
+        }
 
-        
+        if (both == 0){
+            moveL = 0;
+            moveR = 0;
+            moveU = 0;
+            moveD = 0;
+        }
+
         
         this.move((moveR-moveL)*this.moveSpeed,(moveD-moveU)*this.moveSpeed);
     }
