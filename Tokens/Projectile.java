@@ -3,8 +3,8 @@ import java.awt.Color;
 
 public class Projectile extends Token{
     protected int penetration;
-    protected int damage;
-    public Projectile(double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, int damage){
+    protected double damage;
+    public Projectile(double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, double damage){
         this.color = Color.YELLOW;
         this.xPos = xPos;
         this.yPos = yPos;

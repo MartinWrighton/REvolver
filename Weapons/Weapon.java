@@ -10,7 +10,7 @@ public class Weapon {
     protected int clip;
     protected double reloadTime;
     protected double reloadProgress=999;
-    protected int damage;
+    protected double damage;
     protected int penetration;
     protected double projectileSpeed;
     protected int projectileSize;

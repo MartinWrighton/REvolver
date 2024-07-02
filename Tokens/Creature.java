@@ -2,7 +2,7 @@
 public class Creature extends Token{
     //this is a creature, that can live and die
     protected int maxHP;
-    protected int HP;
+    protected double HP;
     
     public Creature(){
         super();
@@ -12,7 +12,7 @@ public class Creature extends Token{
         this.yHit = 50;
     }
 
-    protected void takeDamage(int damage){
+    protected void takeDamage(double damage){
         this.HP-=damage;
         if (this.HP <= 0){
             die();

@@ -47,7 +47,7 @@ public class Main {
         }
     }
 }
-//TODO figure out how to put classes in folders
+
 //TODO let damage and health be doubles
 //TODO projectile lifetime/slowdown
 //TODO shotgun
