@@ -46,9 +46,10 @@ public class DrawMaster extends JComponent{
                 if ((int)token.animationFrame>token.tokenImages.size()-1){
                     token.animationFrame=0;
                 }
-                if (token.direction[0]>0 || token.direction[1]<0){
+                if (token.direction[0]>token.direction[1]){
                     g2.drawImage(token.tokenImages.get((int)token.animationFrame),(int) token.xPos,(int)token.yPos,token.xSize,token.ySize,null);
                 } else {
+
                     g2.drawImage(token.tokenImages.get((int)token.animationFrame),(int) token.xPos+token.xSize,(int)token.yPos,-token.xSize,token.ySize,null);
                 }
   
