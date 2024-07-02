@@ -1,3 +1,4 @@
+import java.awt.Rectangle;
 
 public class Creature extends Token{
     //this is a creature, that can live and die
@@ -10,6 +11,7 @@ public class Creature extends Token{
         this.ySize = 50;
         this.xHit = 30;
         this.yHit = 50;
+        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.xHit, this.yHit);
     }
 
     protected void takeDamage(double damage){

@@ -1,5 +1,7 @@
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 
@@ -15,23 +17,25 @@ public class Main {
     public static void main(String[] args) throws InterruptedException{
         gui.add(player);//for some reason we need to add the player here and not in gui
 
-        int spawntimer = 0;
+        int spawntimer = 99999999;
         int tickrate = 1000000;
         long timestamp = System.nanoTime();
+
+
         while (playing){//mainloop
 
             if (System.nanoTime()-tickrate>timestamp){//if a tick has passed
                 timestamp = System.nanoTime();
 
-
+                
                 //spawn new enemies
-                if (spawntimer > 500){
-                    gui.spawn();
+                if (spawntimer > 5000){
+                    spawnPack(10);
                     spawntimer = 0;
                 } else {
                     spawntimer++;
                 }
-
+                 
                 //do token steps
                 for (int i = 0 ; i < tokens.size() ; i++){
                     tokens.get(i).step();
@@ -46,10 +50,52 @@ public class Main {
             }
         }
     }
+
+    public static void spawnPack(int packSize){
+        //random spawn location
+        Random random = new Random();
+        int xSpawn = 0;
+        int ySpawn = 0;
+        int zone = random.nextInt(4);
+        
+        for (int i = 0; i < packSize; i++){
+            if (zone==0){
+                //left
+                xSpawn = -50;
+                ySpawn = random.nextInt(Main.screenHeight+50);
+            } else if (zone==1){
+                //right
+                xSpawn = Main.screenWidth+30;
+                ySpawn = random.nextInt(Main.screenHeight+55);
+            } else if (zone==2){
+                //top
+                ySpawn = -50;
+                xSpawn = random.nextInt(Main.screenWidth+30);
+            } else if (zone==3){
+                //bottom
+                ySpawn = Main.screenHeight+55;
+                xSpawn = random.nextInt(Main.screenWidth+30);
+            }
+            //ensure they are not spawned on top of another entity
+            Rectangle testHitbox = new Rectangle(xSpawn,ySpawn,30,50);//replace this with some way of dynamicaky getting hitbox of enemy about to be spawned
+            boolean spawnClear = true;
+            for (int j = 0 ; j<tokens.size();j++){
+                if (testHitbox.intersects(Main.tokens.get(j).hitbox)){
+                    spawnClear = false;
+                }
+            }
+            if (spawnClear){
+                Enemy enemy = new Enemy(xSpawn,ySpawn,Main.player);
+                enemy.step();
+                Main.tokens.add(enemy);
+            } else {
+                i--;
+            }
+        }
+
+    }
 }
 
-//TODO let damage and health be doubles
-//TODO projectile lifetime/slowdown
 //TODO shotgun
 //TODO rocket laucher + explosons
 //TODO effect tokens

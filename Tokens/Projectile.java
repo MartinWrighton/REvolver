@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.util.function.Supplier;
 
 public class Projectile extends Token implements Supplier<Projectile>{
@@ -21,6 +22,7 @@ public class Projectile extends Token implements Supplier<Projectile>{
         this.xHit = this.xSize;
         this.yHit = this.ySize;
         this.lifetime = lifetime;
+        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.xHit, this.yHit);
     }
 
     @Override

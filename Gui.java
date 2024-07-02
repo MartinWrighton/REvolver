@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.util.Random;
 import javax.swing.JFrame;
 
 
@@ -37,34 +36,6 @@ public class Gui extends JFrame{
   
     }
 
-    public void spawn(){
-        //random spawn location
-        Random random = new Random();
-        int xSpawn = 0;
-        int ySpawn = 0;
-        int zone = random.nextInt(4);
-        if (zone==0){
-            //left
-            xSpawn = -50;
-            ySpawn = random.nextInt(Main.screenHeight+50);
-        } else if (zone==1){
-            //right
-            xSpawn = Main.screenWidth+30;
-            ySpawn = random.nextInt(Main.screenHeight+55);
-        } else if (zone==2){
-            //top
-            ySpawn = -50;
-            xSpawn = random.nextInt(Main.screenWidth+30);
-        } else if (zone==3){
-            //bottom
-            ySpawn = Main.screenHeight+55;
-            xSpawn = random.nextInt(Main.screenWidth+30);
-        }
-
-        Enemy enemy = new Enemy(xSpawn,ySpawn,Main.player);
-        Main.tokens.add(enemy);
-        this.add(enemy);
-
-    }
+    
 
 }
