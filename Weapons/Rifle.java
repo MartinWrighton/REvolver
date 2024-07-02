@@ -1,6 +1,8 @@
+import java.awt.Color;
 
 public class Rifle extends Weapon{
     public Rifle(Token owner){
+        this.color = Color.YELLOW;
         this.owner = owner;
         this.fireDelay = 1;
         this.clipSize = 5;
@@ -11,6 +13,7 @@ public class Rifle extends Weapon{
         this.projectileSpeed = 1;
         this.projectileSize = 5;
         this.spread = 0.01;
+        this.exampleProjectile = new SimpleProjectile();
     }
     
 }

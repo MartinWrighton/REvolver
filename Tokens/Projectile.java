@@ -1,11 +1,16 @@
-
 import java.awt.Color;
+import java.util.function.Supplier;
 
-public class Projectile extends Token{
+public class Projectile extends Token implements Supplier<Projectile>{
     protected int penetration;
     protected double damage;
-    public Projectile(double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, double damage){
-        this.color = Color.YELLOW;
+    protected int lifetime;
+    public Projectile(){
+
+    }
+
+    public void fillProjectile(Color color, double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, double damage, int lifetime){
+        this.color = color;
         this.xPos = xPos;
         this.yPos = yPos;
         this.xSize = xSize;
@@ -15,12 +20,15 @@ public class Projectile extends Token{
         this.damage = damage;
         this.xHit = this.xSize;
         this.yHit = this.ySize;
+        this.lifetime = lifetime;
     }
 
     @Override
     protected void postStep(){
-        if (xPos < 10 || xPos > Main.screenWidth-25 || yPos < 10 || yPos > Main.screenHeight-50){
+        if (xPos < 10 || xPos > Main.screenWidth-25 || yPos < 10 || yPos > Main.screenHeight-50 ||this.lifetime<=0){
             Main.tokens.remove(this);
+        } else {
+            this.lifetime--;
         }
     }
 
@@ -32,6 +40,11 @@ public class Projectile extends Token{
     }
     protected void end(){
         Main.tokens.remove(this);
+    }
+
+    @Override
+    public Projectile get() {
+        return new Projectile();
     }
 
 }

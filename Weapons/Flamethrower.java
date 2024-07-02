@@ -1,7 +1,9 @@
+import java.awt.Color;
 
 public class Flamethrower extends Weapon{
 
     public Flamethrower(Token owner){
+        this.color = Color.YELLOW;
         this.owner = owner;
         this.fireDelay = 0.005;
         this.clipSize = 1000;
@@ -12,6 +14,7 @@ public class Flamethrower extends Weapon{
         this.projectileSpeed = 0.2;
         this.projectileSize = 10;
         this.spread = 0.2;
+        this.exampleProjectile = new SimpleProjectile();
     }
     
     

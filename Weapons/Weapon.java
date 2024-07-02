@@ -1,5 +1,7 @@
 
+import java.awt.Color;
 import java.util.Random;
+
 
 
 public class Weapon {
@@ -15,6 +17,9 @@ public class Weapon {
     protected double projectileSpeed;
     protected int projectileSize;
     protected double spread;
+    protected int lifetime = 1000;
+    protected Projectile exampleProjectile;
+    protected Color color;
     public void shoot(int x,int y){
         if (this.fireProgress>this.fireDelay && this.clip>0){
             this.fireProgress = 0;
@@ -35,8 +40,8 @@ public class Weapon {
             double movx = xdif/both;
             double movy = ydif/both;
             
-            Projectile bullet = new Projectile(owner.xPos+25, owner.yPos+10, this.projectileSize, this.projectileSize, this.projectileSpeed, this.penetration, this.damage);
-            
+            Projectile bullet = this.exampleProjectile.get();
+            bullet.fillProjectile(this.color, owner.xPos+25, owner.yPos+10, this.projectileSize, this.projectileSize, this.projectileSpeed, this.penetration, this.damage, this.lifetime);
             if (x < owner.xPos){
                 bullet.addDirection(0, movx);
             } else if (x > owner.xPos){
@@ -64,5 +69,6 @@ public class Weapon {
             this.clip = this.clipSize;
         }
     }
+
 
 }

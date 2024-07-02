@@ -1,6 +1,8 @@
+import java.awt.Color;
 
 public class SMG extends Weapon{
     public SMG(Token owner){
+        this.color = Color.YELLOW;
         this.owner = owner;
         this.fireDelay = 0.1;
         this.clipSize = 50;
@@ -11,5 +13,7 @@ public class SMG extends Weapon{
         this.projectileSpeed = 0.5;
         this.projectileSize = 3;
         this.spread = 0.1;
+        this.exampleProjectile = new SimpleProjectile();
     }
+
 }

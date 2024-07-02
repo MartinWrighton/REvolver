@@ -1,6 +1,8 @@
+import java.awt.Color;
 
 public class DevGun extends Weapon{
     public DevGun(Token owner){
+        this.color = Color.YELLOW;
         this.owner = owner;
         this.fireDelay = 0;
         this.clipSize = 999999999;
@@ -11,5 +13,6 @@ public class DevGun extends Weapon{
         this.projectileSpeed = 30;
         this.projectileSize = 10;
         this.spread = 0.0000001;
+        this.exampleProjectile = new SimpleProjectile();
     }
 }
