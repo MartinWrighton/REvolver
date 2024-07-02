@@ -1,3 +1,4 @@
+
 public class SMG extends Weapon{
     public SMG(Token owner){
         this.owner = owner;

@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.util.Random;
 import javax.swing.JFrame;
 
+
 public class Gui extends JFrame{
     public DrawMaster draw;
 

@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 
 
+
 public class Main {
     public static ArrayList<Token> tokens = new ArrayList<Token>();
     public static int screenWidth = 1600;
@@ -51,8 +52,12 @@ public class Main {
 //TODO projectile lifetime/slowdown
 //TODO shotgun
 //TODO rocket laucher + explosons
+//TODO effect tokens
 //TODO do flamethrower properly
-//TODO do lazer properly
+//TODO do laser properly
+//TODO different projectiles
+//TODO different enemy types
+//TODO ranged enemies
 //TODO wave spawning
 //TODO UI elements
 //TODO gameplay elements; leveling and enemy progression

@@ -2,6 +2,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+
+
 public class MoveAction extends AbstractAction {
     //sets the triggering creatures direction
     // axis is the direction we want to change 0 is left 1 is right 2 is up and 3 down
