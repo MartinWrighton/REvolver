@@ -1,4 +1,6 @@
+
 import java.util.Random;
+
 
 public class Weapon {
     protected Token owner;

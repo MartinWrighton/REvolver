@@ -8,7 +8,7 @@ public class Rifle extends Weapon{
         this.reloadTime = 6;
         this.damage = 10;
         this.penetration = 1;
-        this.projectileSpeed = 0.8;
+        this.projectileSpeed = 1;
         this.projectileSize = 5;
         this.spread = 0.01;
     }

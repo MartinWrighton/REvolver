@@ -46,7 +46,14 @@ public class Main {
         }
     }
 }
-
-
-//TODO hold to shoot
-//TODO prevent enemies stacking
+//TODO figure out how to put classes in folders
+//TODO let damage and health be doubles
+//TODO projectile lifetime/slowdown
+//TODO shotgun
+//TODO rocket laucher + explosons
+//TODO do flamethrower properly
+//TODO do lazer properly
+//TODO wave spawning
+//TODO UI elements
+//TODO gameplay elements; leveling and enemy progression
+//TODO main menu

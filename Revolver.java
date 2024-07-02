@@ -1,3 +1,4 @@
+
 public class Revolver extends Weapon{
 
     public Revolver(Token owner){
