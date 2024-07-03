@@ -22,7 +22,7 @@ public class DrawMaster extends JComponent{
             }
         }
         Graphics2D g2 = (Graphics2D) g;
-        //attempting image work
+        //background
         int yStart = ((int)Main.worldY%img.getHeight())-img.getHeight();
         for (int j = (Main.screenWidth/img.getWidth())+2;j>0;j--){
             int xStart = ((int)Main.worldX%img.getWidth())-img.getWidth();
@@ -42,22 +42,19 @@ public class DrawMaster extends JComponent{
         for(int i = 0 ; i<Main.tokens.size();i++){
             Token token = Main.tokens.get(i);
             
-            if (token.tokenImages.size()>0){
-                if ((int)token.animationFrame>token.tokenImages.size()-1){
-                    token.animationFrame=0;
-                }
+            if (token.animationSet>=0){
                 if (token.direction[0]>token.direction[1]){
-                    g2.drawImage(token.tokenImages.get((int)token.animationFrame),(int) token.xPos,(int)token.yPos,token.xSize,token.ySize,null);
+                    g2.drawImage(token.tokenImages.get(token.animationSet).get((int)token.animationFrame),(int) token.xPos,(int)token.yPos,token.xSize,token.ySize,null);
                 } else {
 
-                    g2.drawImage(token.tokenImages.get((int)token.animationFrame),(int) token.xPos+token.xSize,(int)token.yPos,-token.xSize,token.ySize,null);
+                    g2.drawImage(token.tokenImages.get(token.animationSet).get((int)token.animationFrame),(int) token.xPos+token.xSize,(int)token.yPos,-token.xSize,token.ySize,null);
                 }
   
                 
             } else {
                 g2.setColor(Main.tokens.get(i).color);
-                g2.drawRect((int)token.xPos,(int)token.yPos,token.xSize,token.ySize);
-                g2.fillRect((int)token.xPos,(int)token.yPos, token.xSize,token.ySize);
+                g2.drawRect((int)token.xPos,(int)token.yPos,token.xHit,token.yHit);
+                g2.fillRect((int)token.xPos,(int)token.yPos, token.xHit,token.yHit);
             }
 
         }

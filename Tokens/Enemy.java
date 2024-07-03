@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,10 +22,19 @@ public class Enemy extends Creature {
         this.maxHP = 6;
         this.HP = this.maxHP;
         try {
-            this.tokenImages.add(ImageIO.read(new File("resources\\PixelEnemyLeftFoot.PNG")));
-            this.tokenImages.add(ImageIO.read(new File("resources\\PixelEnemyNeutral.PNG")));
-            this.tokenImages.add(ImageIO.read(new File("resources\\PixelEnemyRightFoot.PNG")));
-            this.tokenImages.add(ImageIO.read(new File("resources\\PixelEnemyNeutral.PNG")));
+            ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
+            set.add(ImageIO.read(new File("resources\\PixelEnemyLeftFoot.PNG")));
+            set.add(ImageIO.read(new File("resources\\PixelEnemyNeutral.PNG")));
+            set.add(ImageIO.read(new File("resources\\PixelEnemyRightFoot.PNG")));
+            set.add(ImageIO.read(new File("resources\\PixelEnemyNeutral.PNG")));
+            this.tokenImages.add(set);
+
+            set = new ArrayList<BufferedImage>();
+            set.add(ImageIO.read(new File("resources\\PixelPlayerLeftFoot.PNG")));
+            set.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
+            set.add(ImageIO.read(new File("resources\\PixelPlayerRightFoot.PNG")));
+            set.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
+            this.tokenImages.add(set);
         } catch (IOException e) {
             System.out.println("Failed to load Enemy image");
         }
@@ -110,7 +120,19 @@ public class Enemy extends Creature {
         }
     }
     
-    
+    @Override
+    protected void animationStep(){
+
+        double difx = Math.abs(target.xPos - this.xPos);
+        double dify = Math.abs(target.yPos - this.yPos);
+        double distance = Math.sqrt(difx*difx + dify*dify);
+        if(distance<300){
+            this.animationSet = 1;
+        } else {
+            this.animationSet = 0;
+        }
+        super.animationStep();
+    }
 
     @Override
     protected void die(){

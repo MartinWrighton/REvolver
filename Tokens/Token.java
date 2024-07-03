@@ -17,7 +17,8 @@ public class Token extends JComponent{
     protected Rectangle hitbox;
     protected int xHit;
     protected int yHit;
-    protected ArrayList<BufferedImage> tokenImages = new ArrayList<BufferedImage>();
+    protected ArrayList<ArrayList<BufferedImage>> tokenImages = new ArrayList<ArrayList<BufferedImage>>();
+    protected int animationSet = 0;
     protected double animationFrame = 0;
     protected double animationSpeed = 0.005;
     public Token(){
@@ -105,9 +106,11 @@ public class Token extends JComponent{
         this.direction[axis] = value;
     }
     protected void animationStep(){
-        this.animationFrame+=animationSpeed*Main.dynamicTick;
-        if ((int)this.animationFrame>this.tokenImages.size()-1){
-            this.animationFrame=0;
+        if (this.animationSet>=0){
+            this.animationFrame+=animationSpeed*Main.dynamicTick;
+            if ((int)this.animationFrame>this.tokenImages.get(this.animationSet).size()-1){
+                this.animationFrame=0;
+            }
         }
     }
     protected void preStep(){}

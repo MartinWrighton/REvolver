@@ -1,8 +1,10 @@
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -22,12 +24,14 @@ public class Player extends Creature {
         this.hitbox = new Rectangle(xPos, yPos, xHit, yHit);
         this.maxHP = 100000;
         this.HP = this.maxHP;
-        this.weapon = new PlasmaRifle(this);
+        this.weapon = new SMG(this);
         try {
-            this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerLeftFoot.PNG")));
-            this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
-            this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerRightFoot.PNG")));
-            this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
+            ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
+            set.add(ImageIO.read(new File("resources\\PixelPlayerLeftFoot.PNG")));
+            set.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
+            set.add(ImageIO.read(new File("resources\\PixelPlayerRightFoot.PNG")));
+            set.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
+            this.tokenImages.add(set);
         } catch (IOException e) {
             System.out.println("Failed to load Player image");
         }
