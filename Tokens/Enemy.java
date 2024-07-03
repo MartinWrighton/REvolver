@@ -54,45 +54,58 @@ public class Enemy extends Creature {
 
         //TODO player movement jostles so dense packs of enemies dont get moved
         for (int i = 0; i<Main.tokens.size();i++){
-            //diagonal
-            /*
-            this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos+y), this.xHit, this.yHit);
-            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
-                x = 0;
-                y = 0;
-            }
-            */
-            //only x
-            this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos), this.xHit, this.yHit);
-            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
-                x = 0;
-                //check if it is safe to accelerate in y
-                this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+1), this.xHit, this.yHit);
-                if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
-                    //leave y unchanged
-                } else {
-                    if (y < 0){
-                        y = -1*this.moveSpeed;
+            if (Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
+                Rectangle blocker = Main.tokens.get(i).hitbox;
+
+                this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos), this.xHit, this.yHit);
+                if (this.hitbox.intersects(blocker)){
+                        x = 0;
+                    //check if it is safe to accelerate in y
+                    this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+1), this.xHit, this.yHit);
+                    if (this.hitbox.intersects(blocker)){
+                        //leave y unchanged
                     } else {
-                        y = 1*this.moveSpeed;
+                        if (y < 0){
+                            y = -1*this.moveSpeed*Main.dynamicTick;
+                        } else {
+                            y = 1*this.moveSpeed*Main.dynamicTick;
+                        }
+                    }
+                }
+                //only y
+                this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+y), this.xHit, this.yHit);
+                if (this.hitbox.intersects(blocker)){
+                         y = 0;
+                    //check if it is safe to accelerate in x
+                    this.hitbox = new Rectangle((int)(this.xPos+1), (int)(this.yPos), this.xHit, this.yHit);
+                    if (this.hitbox.intersects(blocker)){
+                        //leave x unchanged
+                    } else {
+                        if(x < 0){
+                        x = -1*this.moveSpeed*Main.dynamicTick;
+                        } else {
+                            x = 1*this.moveSpeed*Main.dynamicTick;
+                        }
                     }
                 }
             }
-            //only y
-            this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+y), this.xHit, this.yHit);
-            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
-                y = 0;
-                //check if it is safe to accelerate in x
-                this.hitbox = new Rectangle((int)(this.xPos+1), (int)(this.yPos), this.xHit, this.yHit);
-                if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
-                    //leave x unchanged
-                } else {
-                    if(x < 0){
-                    x = -1*this.moveSpeed;
-                    } else {
-                        x = 1*this.moveSpeed;
-                    }
+        }
+        //second pass without acceleration in the other direction
+        for (int i = 0; i<Main.tokens.size();i++){
+            if (Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
+                Rectangle blocker = Main.tokens.get(i).hitbox;
+
+                this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos), this.xHit, this.yHit);
+                if (this.hitbox.intersects(blocker)){
+                        x = 0;
+        
                 }
+                //only y
+                this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+y), this.xHit, this.yHit);
+                if (this.hitbox.intersects(blocker)){
+                        y = 0;
+                    }
+                
             }
         }
         super.move(x,y);
