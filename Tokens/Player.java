@@ -16,15 +16,11 @@ public class Player extends Creature {
     private int[] shootingAt = new int[] {0,0};
     private Weapon weapon;
     public Player(int xPos,int yPos){
-        super();
-        this.color = Color.RED;
-        this.moveSpeed = -0.1; //where 1 is one pixel per tick // negative because we move the world around us
-        this.xPos = xPos;
-        this.yPos = yPos;
+        super(Color.RED, xPos, yPos, -0.1 , 10);
+
         this.hitbox = new Rectangle(xPos, yPos, xHit, yHit);
-        this.maxHP = 100000;
-        this.HP = this.maxHP;
         this.weapon = new SMG(this);
+        
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
             set.add(ImageIO.read(new File("resources\\PixelPlayerLeftFoot.PNG")));

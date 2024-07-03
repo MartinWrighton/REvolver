@@ -13,14 +13,10 @@ public class Enemy extends Creature {
     private Token target;
     private ArrayList<Token> noContact = new ArrayList<Token>();//to prevent hitting same projectile again
     public Enemy(int xPos,int yPos,Token target){
-        super();
-        this.color = Color.BLUE;
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.moveSpeed = 0.09;
-        this.target = target;
-        this.maxHP = 6;
-        this.HP = this.maxHP;
+        super(Color.BLUE, xPos, yPos, 0.09 , 6);
+
+        this.target = Main.player;
+
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
             set.add(ImageIO.read(new File("resources\\PixelEnemyLeftFoot.PNG")));
