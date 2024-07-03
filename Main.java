@@ -30,7 +30,7 @@ public class Main {
                 
                 //spawn new enemies
                 if (spawntimer > 5000){
-                    spawnPack(10);
+                    spawnPack(100);
                     spawntimer = 0;
                 } else {
                     spawntimer++;
@@ -57,30 +57,39 @@ public class Main {
         int xSpawn = 0;
         int ySpawn = 0;
         int zone = random.nextInt(4);
-        
+        /*
+        //make large packs spawn on long board edges
+        if (packSize*50*2>Main.screenHeight){
+            zone = random.nextInt(2)+2;
+        }
+        */
+
+
         for (int i = 0; i < packSize; i++){
+            
             if (zone==0){
                 //left
-                xSpawn = -50;
+                xSpawn = -50-random.nextInt(500);
                 ySpawn = random.nextInt(Main.screenHeight+50);
             } else if (zone==1){
                 //right
-                xSpawn = Main.screenWidth+30;
+                xSpawn = Main.screenWidth+30+random.nextInt(500);
                 ySpawn = random.nextInt(Main.screenHeight+55);
             } else if (zone==2){
                 //top
-                ySpawn = -50;
+                ySpawn = -50-random.nextInt(500);
                 xSpawn = random.nextInt(Main.screenWidth+30);
             } else if (zone==3){
                 //bottom
-                ySpawn = Main.screenHeight+55;
+                ySpawn = Main.screenHeight+55+random.nextInt(500);
                 xSpawn = random.nextInt(Main.screenWidth+30);
             }
             //ensure they are not spawned on top of another entity
-            Rectangle testHitbox = new Rectangle(xSpawn,ySpawn,30,50);//replace this with some way of dynamicaky getting hitbox of enemy about to be spawned
+            Rectangle testHitbox = new Rectangle(xSpawn,ySpawn,30,50);//replace this with some way of dynamic way getting hitbox of enemy about to be spawned
             boolean spawnClear = true;
             for (int j = 0 ; j<tokens.size();j++){
-                if (testHitbox.intersects(Main.tokens.get(j).hitbox)){
+                if (testHitbox.intersects(Main.tokens.get(j).hitbox) && Main.tokens.get(j) instanceof Enemy){
+                    Main.tokens.get(j).step();//step blocking creature to maybe free the space
                     spawnClear = false;
                 }
             }
@@ -91,7 +100,9 @@ public class Main {
             } else {
                 i--;
             }
+
         }
+       
 
     }
 }
