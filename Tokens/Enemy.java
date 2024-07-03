@@ -51,7 +51,7 @@ public class Enemy extends Creature {
         */
         
         //jostle checks
-        //TODO if move fails in one direction make them move as much has possible in the other, be careful that adding this extra movement does not make them clip
+
         //TODO player movement jostles so dense packs of enemies dont get moved
         for (int i = 0; i<Main.tokens.size();i++){
             //diagonal
@@ -66,11 +66,33 @@ public class Enemy extends Creature {
             this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos), this.xHit, this.yHit);
             if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
                 x = 0;
+                //check if it is safe to accelerate in y
+                this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+1), this.xHit, this.yHit);
+                if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
+                    //leave y unchanged
+                } else {
+                    if (y < 0){
+                        y = -1*this.moveSpeed;
+                    } else {
+                        y = 1*this.moveSpeed;
+                    }
+                }
             }
             //only y
             this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+y), this.xHit, this.yHit);
             if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
                 y = 0;
+                //check if it is safe to accelerate in x
+                this.hitbox = new Rectangle((int)(this.xPos+1), (int)(this.yPos), this.xHit, this.yHit);
+                if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
+                    //leave x unchanged
+                } else {
+                    if(x < 0){
+                    x = -1*this.moveSpeed;
+                    } else {
+                        x = 1*this.moveSpeed;
+                    }
+                }
             }
         }
         super.move(x,y);
