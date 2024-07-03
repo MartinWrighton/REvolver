@@ -58,8 +58,11 @@ public class Main {
     }
 
     public static void spawnPack(int packSize){
-        //random spawn location
         Random random = new Random();
+        //choose enemy type
+        int enemyType = random.nextInt(2);
+        //random spawn location
+
         int xSpawn = 0;
         int ySpawn = 0;
         int zone = random.nextInt(4);
@@ -91,8 +94,8 @@ public class Main {
                 xSpawn = random.nextInt(Main.screenWidth+30);
             }
             //ensure they are not spawned on top of another entity
-            Rectangle testHitbox = new Rectangle(xSpawn,ySpawn,30,50);//replace this with some way of dynamic way getting hitbox of enemy about to be spawned
-            boolean spawnClear = true;
+            Rectangle testHitbox = new Rectangle(xSpawn-5,ySpawn-5,50,50);//replace this with some way of dynamic way getting hitbox of enemy about to be spawned
+            boolean spawnClear = true;                                             // currently just larger than all enemies
             for (int j = 0 ; j<tokens.size();j++){
                 if (testHitbox.intersects(Main.tokens.get(j).hitbox) && Main.tokens.get(j) instanceof Enemy){
                     Main.tokens.get(j).step();//step blocking creature to maybe free the space
@@ -100,7 +103,12 @@ public class Main {
                 }
             }
             if (spawnClear){
-                Enemy enemy = new Enemy(xSpawn,ySpawn,Main.player);
+                Enemy enemy;
+                if (enemyType == 0){
+                    enemy = new Cloak(xSpawn,ySpawn,Main.player);
+                } else {
+                    enemy = new Knight(xSpawn,ySpawn,Main.player);
+                }
                 enemy.step();
                 Main.tokens.add(enemy);
             } else {
@@ -115,7 +123,6 @@ public class Main {
 
 //TODO shotgun
 //TODO rocket laucher + explosons
-//TODO effect tokens
 //TODO do flamethrower properly
 //TODO do laser properly
 //TODO different projectiles

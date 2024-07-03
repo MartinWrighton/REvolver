@@ -1,39 +1,19 @@
-
 import java.awt.Color;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 
 public class Enemy extends Creature {
     //this is an enemy that will attack the player
     private Token target;
     private ArrayList<Token> noContact = new ArrayList<Token>();//to prevent hitting same projectile again
-    public Enemy(int xPos,int yPos,Token target){
-        super(Color.BLUE, xPos, yPos, 0.09 , 6,28,40,28,40);
+    private double armor;
+    public Enemy(int xPos,int yPos,double moveSpeed,double maxHp,int xSize,int ySize,int xHit,int yHit, double armor, Token target){
+        super(Color.BLUE, xPos, yPos, moveSpeed , maxHp,xSize,ySize,xHit,yHit);
 
-        this.target = Main.player;
-
-        this.animationSpeed = 0.015;
-        try {
-            ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
-            for (int i = 0 ; i<16;i++){
-                set.add(ImageIO.read(new File("resources\\PixelEnemy\\PixelEnemyWalk"+Integer.toString(i)+".png")));
-                
-            }
-            this.tokenImages.add(set);
-
-            set = new ArrayList<BufferedImage>();
-            for (int i = 0 ; i<16;i++){
-                set.add(ImageIO.read(new File("resources\\PixelEnemy\\PixelEnemyAttack"+Integer.toString(i)+".png")));
-            }
-            this.tokenImages.add(set);
-        } catch (IOException e) {
-            System.out.println("Failed to load Enemy image");
-        }
+        this.target = target;
+        this.armor = armor;
+        
     }
     @Override
     protected void pathfind(){
@@ -124,14 +104,17 @@ public class Enemy extends Creature {
         double distance = Math.sqrt(difx*difx + dify*dify);
         if(distance<100){//if enemy is close switch to attack animation
             this.animationSet = 1;
-            this.xSize = 32;
-            //this.xHit = 32; expanding hitbox makes them clip
         } else {
             this.animationSet = 0;
-            this.xSize = 28;
-            //this.xHit = 28;
         }
         super.animationStep();
+    }
+    @Override
+    protected void takeDamage(double damage){
+        //armor calculation
+        //the bullet is either able to penetrate the armor (damage-armor) and has a flat reduction, or it thumps against it (damage/armor) and is divided
+        damage = Math.max((damage-this.armor),(damage/this.armor));
+        super.takeDamage(damage);
     }
 
     @Override

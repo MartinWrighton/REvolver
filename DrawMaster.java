@@ -53,8 +53,7 @@ public class DrawMaster extends JComponent{
                     g2.drawImage(token.tokenImages.get(token.animationSet).get((int)token.animationFrame),(int) token.xPos+token.xSize,(int)token.yPos,-token.xSize,token.ySize,null);
                 }
                 if (i>=Main.tokens.size()){//TODO find out what is causing this
-                    System.out.println(i+" "+Main.tokens.size());
-                    System.out.println(Main.tokens.get(i).getClass());
+                    break;
                 }
                 //show hitboxes
                 g2.setColor(Main.tokens.get(i).color);

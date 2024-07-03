@@ -33,4 +33,5 @@ public class SimpleProjectile extends Projectile{
         super.end();
     }
 
+
 }
