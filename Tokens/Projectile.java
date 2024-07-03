@@ -27,7 +27,7 @@ public class Projectile extends Token implements Supplier<Projectile>{
 
     @Override
     protected void postStep(){
-        if (xPos < 10 || xPos > Main.screenWidth-25 || yPos < 10 || yPos > Main.screenHeight-50 ||this.lifetime<=0){
+        if (this.lifetime<=0){
             Main.tokens.remove(this);
         } else {
             this.lifetime--;
