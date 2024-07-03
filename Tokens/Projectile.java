@@ -7,10 +7,11 @@ public class Projectile extends Token implements Supplier<Projectile>{
     protected double damage;
     protected int lifetime;
     public Projectile(){
-
+        super(Color.BLACK,0,0,0,0,0,0,0);
     }
 
     public void fillProjectile(Color color, double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, double damage, int lifetime){
+        this.animationSet = -1;
         this.color = color;
         this.xPos = xPos;
         this.yPos = yPos;

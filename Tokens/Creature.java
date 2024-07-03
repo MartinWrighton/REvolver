@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Rectangle;
 
 public class Creature extends Token{
     //this is a creature, that can live and die
@@ -7,18 +6,11 @@ public class Creature extends Token{
     protected double HP;
     
     public Creature(Color color, double xPos, double yPos, double moveSpeed, double maxHP){
-        super();
-        this.color = color;
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.moveSpeed = moveSpeed;
+        super(color,xPos,yPos,moveSpeed,50,50,30,50);
+
         this.maxHP = maxHP;
         this.HP = this.maxHP;
-        this.xSize = 50;
-        this.ySize = 50;
-        this.xHit = 30;
-        this.yHit = 50;
-        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.xHit, this.yHit);
+
     }
 
     protected void takeDamage(double damage){

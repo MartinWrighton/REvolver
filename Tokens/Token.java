@@ -21,7 +21,16 @@ public class Token extends JComponent{
     protected int animationSet = 0;
     protected double animationFrame = 0;
     protected double animationSpeed = 0.005;
-    public Token(){
+    public Token(Color color, double xPos, double yPos, double moveSpeed, int xSize, int ySize, int xHit, int yHit){
+        this.color = color;
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.moveSpeed = moveSpeed;
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.xHit = xHit;
+        this.yHit = yHit;
+        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.xHit, this.yHit);
     }
     /*
     @Override
