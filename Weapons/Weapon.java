@@ -63,8 +63,8 @@ public class Weapon {
         }
     }
     public void tick(){
-        this.fireProgress += 0.001;
-        this.reloadProgress += 0.001;
+        this.fireProgress += 0.001*Main.dynamicTick;
+        this.reloadProgress += 0.001*Main.dynamicTick;
         if (this.reloadProgress>=this.reloadTime){
             this.clip = this.clipSize;
         }

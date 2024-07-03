@@ -20,9 +20,9 @@ public class Player extends Creature {
         this.xPos = xPos;
         this.yPos = yPos;
         this.hitbox = new Rectangle(xPos, yPos, xHit, yHit);
-        this.maxHP = 10;
+        this.maxHP = 100000;
         this.HP = this.maxHP;
-        this.weapon = new DevGun(this);
+        this.weapon = new PlasmaRifle(this);
         try {
             this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerLeftFoot.PNG")));
             this.tokenImages.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));

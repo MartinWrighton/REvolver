@@ -92,7 +92,7 @@ public class Token extends JComponent{
         }
 
         
-        this.move((moveR-moveL)*this.moveSpeed,(moveD-moveU)*this.moveSpeed);
+        this.move((moveR-moveL)*this.moveSpeed*Main.dynamicTick,(moveD-moveU)*this.moveSpeed*Main.dynamicTick);
     }
 
     public double[] getDirection(){
@@ -105,7 +105,7 @@ public class Token extends JComponent{
         this.direction[axis] = value;
     }
     protected void animationStep(){
-        this.animationFrame+=animationSpeed;
+        this.animationFrame+=animationSpeed*Main.dynamicTick;
         if ((int)this.animationFrame>this.tokenImages.size()-1){
             this.animationFrame=0;
         }

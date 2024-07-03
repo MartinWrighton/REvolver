@@ -65,7 +65,8 @@ public class Enemy extends Creature {
         */
         
         //jostle checks
-        //TODO if move fails in one direction make them move as muc has possible in the other, be careful that adding this extra movement does not make them clip
+        //TODO if move fails in one direction make them move as much has possible in the other, be careful that adding this extra movement does not make them clip
+        //TODO player movement jostles so dense packs of enemies dont get moved
         for (int i = 0; i<Main.tokens.size();i++){
             //diagonal
             /*

@@ -14,29 +14,32 @@ public class Main {
     public static boolean playing = true;
     public static double worldX;
     public static double worldY;
+    public static double dynamicTick;
     public static void main(String[] args) throws InterruptedException{
         gui.add(player);//for some reason we need to add the player here and not in gui
 
         int spawntimer = 99999999;
-        int tickrate = 1000000;//TODO a slower tickrate might let us handle more enemies before slowdown is noticeable, might me possible to make a 'degraded' mode with a variable tickrate and adjust creature movespeed accordingly
+        int tickrate = 1000000;
         long timestamp = System.nanoTime();
 
 
         while (playing){//mainloop
 
             if (System.nanoTime()-tickrate>timestamp){//if a tick has passed
-                //TESTING======================================================================================
-                System.out.println(Main.tokens.size());
+                int elapsedNano = (int)(System.nanoTime() - timestamp);
+                dynamicTick =(double)((double)elapsedNano/tickrate);
 
+                
                 timestamp = System.nanoTime();
 
                 
                 //spawn new enemies
                 if (spawntimer > 5000){
+                    System.out.println(tokens.size()+" "+dynamicTick);
                     spawnPack(10);//we can handle ~150 creatures before slowdown becomes noticable
                     spawntimer = 0;
                 } else {
-                    spawntimer++;
+                    spawntimer+=dynamicTick;
                 }
                  
                 //do token steps
