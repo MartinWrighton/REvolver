@@ -1,9 +1,7 @@
-import java.awt.Color;
 
 public class PlasmaRifle extends Weapon{
 
     public PlasmaRifle(Token owner){
-        this.color = Color.CYAN;
         this.owner = owner;
         this.fireDelay = 0.0001;
         this.clipSize = 10;

@@ -5,8 +5,8 @@ public class Creature extends Token{
     protected double maxHP;
     protected double HP;
     
-    public Creature(Color color, double xPos, double yPos, double moveSpeed, double maxHP){
-        super(color,xPos,yPos,moveSpeed,50,50,30,50);
+    public Creature(Color color, double xPos, double yPos, double moveSpeed, double maxHP , int xSize, int ySize, int xHit, int yHit){
+        super(color,xPos,yPos,moveSpeed,xSize,ySize,xHit,yHit);
 
         this.maxHP = maxHP;
         this.HP = this.maxHP;

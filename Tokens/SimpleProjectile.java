@@ -1,6 +1,25 @@
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class SimpleProjectile extends Projectile{
     public SimpleProjectile(){
+        super(new Color(252,140,48));
+        
+
+        try {
+            ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
+            set.add(ImageIO.read(new File("resources\\SimpleProjectile.png")));
+            this.tokenImages.add(set);
+        } catch (IOException e) {
+            System.out.println("Failed to load SimpleProjectile image");
+        }
+                
+
     }
 
     @Override
@@ -8,6 +27,10 @@ public class SimpleProjectile extends Projectile{
         return new SimpleProjectile();
     }
 
-    //has no end() effect because it is simple
+    @Override
+    protected void end(){
+        Main.tokens.add(new BulletPop(this.xPos,this.yPos,this.xSize,this.ySize));
+        super.end();
+    }
 
 }

@@ -43,14 +43,22 @@ public class DrawMaster extends JComponent{
             Token token = Main.tokens.get(i);
             
             if (token.animationSet>=0){
-                if (token.direction[0]>token.direction[1]){
+                if ((int)token.animationFrame>token.tokenImages.get(token.animationSet).size()-1){
+                    token.animationFrame=0;
+                }
+                if (token.direction[0]<token.direction[1]){
                     g2.drawImage(token.tokenImages.get(token.animationSet).get((int)token.animationFrame),(int) token.xPos,(int)token.yPos,token.xSize,token.ySize,null);
                 } else {
 
                     g2.drawImage(token.tokenImages.get(token.animationSet).get((int)token.animationFrame),(int) token.xPos+token.xSize,(int)token.yPos,-token.xSize,token.ySize,null);
                 }
-  
-                
+                if (i>=Main.tokens.size()){//TODO find out what is causing this
+                    System.out.println(i+" "+Main.tokens.size());
+                    System.out.println(Main.tokens.get(i).getClass());
+                }
+                //show hitboxes
+                g2.setColor(Main.tokens.get(i).color);
+                g2.drawRect((int)token.xPos,(int)token.yPos,token.xHit,token.yHit);
             } else {
                 g2.setColor(Main.tokens.get(i).color);
                 g2.drawRect((int)token.xPos,(int)token.yPos,token.xHit,token.yHit);

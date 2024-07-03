@@ -6,13 +6,11 @@ public class Projectile extends Token implements Supplier<Projectile>{
     protected int penetration;
     protected double damage;
     protected int lifetime;
-    public Projectile(){
-        super(Color.BLACK,0,0,0,0,0,0,0);
+    public Projectile(Color color){
+        super(color,0,0,0,0,0,0,0);
     }
 
-    public void fillProjectile(Color color, double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, double damage, int lifetime){
-        this.animationSet = -1;
-        this.color = color;
+    public void fillProjectile(double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, double damage, int lifetime){
         this.xPos = xPos;
         this.yPos = yPos;
         this.xSize = xSize;
@@ -29,7 +27,7 @@ public class Projectile extends Token implements Supplier<Projectile>{
     @Override
     protected void postStep(){
         if (this.lifetime<=0){
-            Main.tokens.remove(this);
+            this.end();
         } else {
             this.lifetime--;
         }
@@ -47,7 +45,7 @@ public class Projectile extends Token implements Supplier<Projectile>{
 
     @Override
     public Projectile get() {
-        return new Projectile();
+        return new Projectile(this.color);
     }
 
 }

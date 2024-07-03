@@ -13,23 +13,23 @@ public class Enemy extends Creature {
     private Token target;
     private ArrayList<Token> noContact = new ArrayList<Token>();//to prevent hitting same projectile again
     public Enemy(int xPos,int yPos,Token target){
-        super(Color.BLUE, xPos, yPos, 0.09 , 6);
+        super(Color.BLUE, xPos, yPos, 0.09 , 6,28,40,28,40);
 
         this.target = Main.player;
 
+        this.animationSpeed = 0.015;
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
-            set.add(ImageIO.read(new File("resources\\PixelEnemyLeftFoot.PNG")));
-            set.add(ImageIO.read(new File("resources\\PixelEnemyNeutral.PNG")));
-            set.add(ImageIO.read(new File("resources\\PixelEnemyRightFoot.PNG")));
-            set.add(ImageIO.read(new File("resources\\PixelEnemyNeutral.PNG")));
+            for (int i = 0 ; i<16;i++){
+                set.add(ImageIO.read(new File("resources\\PixelEnemy\\PixelEnemyWalk"+Integer.toString(i)+".png")));
+                
+            }
             this.tokenImages.add(set);
 
             set = new ArrayList<BufferedImage>();
-            set.add(ImageIO.read(new File("resources\\PixelPlayerLeftFoot.PNG")));
-            set.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
-            set.add(ImageIO.read(new File("resources\\PixelPlayerRightFoot.PNG")));
-            set.add(ImageIO.read(new File("resources\\PixelPlayerNeutral.PNG")));
+            for (int i = 0 ; i<16;i++){
+                set.add(ImageIO.read(new File("resources\\PixelEnemy\\PixelEnemyAttack"+Integer.toString(i)+".png")));
+            }
             this.tokenImages.add(set);
         } catch (IOException e) {
             System.out.println("Failed to load Enemy image");
@@ -122,10 +122,14 @@ public class Enemy extends Creature {
         double difx = Math.abs(target.xPos - this.xPos);
         double dify = Math.abs(target.yPos - this.yPos);
         double distance = Math.sqrt(difx*difx + dify*dify);
-        if(distance<300){
+        if(distance<100){//if enemy is close switch to attack animation
             this.animationSet = 1;
+            this.xSize = 32;
+            //this.xHit = 32; expanding hitbox makes them clip
         } else {
             this.animationSet = 0;
+            this.xSize = 28;
+            //this.xHit = 28;
         }
         super.animationStep();
     }

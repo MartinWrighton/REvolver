@@ -1,9 +1,7 @@
-import java.awt.Color;
 
 public class Revolver extends Weapon{
 
     public Revolver(Token owner){
-        this.color = Color.YELLOW;
         this.owner = owner;
         this.fireDelay = 0.3;
         this.clipSize = 6;
