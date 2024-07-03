@@ -65,7 +65,7 @@ public class Enemy extends Creature {
         */
         
         //jostle checks
-
+        //TODO if move fails in one direction make them move as muc has possible in the other, be careful that adding this extra movement does not make them clip
         for (int i = 0; i<Main.tokens.size();i++){
             //diagonal
             /*
@@ -87,11 +87,7 @@ public class Enemy extends Creature {
             }
         }
         super.move(x,y);
-        /*
-        this.xPos = this.xPos + x;
-        this.yPos = this.yPos + y;
-        this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.xHit, this.yHit);
-        */
+
     }
     
 

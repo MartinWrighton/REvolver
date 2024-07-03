@@ -18,19 +18,22 @@ public class Main {
         gui.add(player);//for some reason we need to add the player here and not in gui
 
         int spawntimer = 99999999;
-        int tickrate = 1000000;
+        int tickrate = 1000000;//TODO a slower tickrate might let us handle more enemies before slowdown is noticeable, might me possible to make a 'degraded' mode with a variable tickrate and adjust creature movespeed accordingly
         long timestamp = System.nanoTime();
 
 
         while (playing){//mainloop
 
             if (System.nanoTime()-tickrate>timestamp){//if a tick has passed
+                //TESTING======================================================================================
+                System.out.println(Main.tokens.size());
+
                 timestamp = System.nanoTime();
 
                 
                 //spawn new enemies
                 if (spawntimer > 5000){
-                    spawnPack(100);
+                    spawnPack(10);//we can handle ~150 creatures before slowdown becomes noticable
                     spawntimer = 0;
                 } else {
                     spawntimer++;
