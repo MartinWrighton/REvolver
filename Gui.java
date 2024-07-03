@@ -1,4 +1,7 @@
 import java.awt.Color;
+import java.awt.Point;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 
@@ -12,11 +15,14 @@ public class Gui extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(Main.screenWidth,Main.screenHeight);
         Click mouseClick = new Click();
-        this.addMouseListener(mouseClick);
-        this.addMouseMotionListener(mouseClick);
+        this.getContentPane().addMouseListener(mouseClick);
+        this.getContentPane().addMouseMotionListener(mouseClick);
         this.getContentPane().setBackground(new Color(212,255,171));
         this.setVisible(true);
-        //this.setLayout(null);
+        
+
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("resources\\PixelCursor.png").getImage(),new Point(0,0),"custom cursor"));
+        
 
         draw = new DrawMaster();
         this.add(draw);

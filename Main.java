@@ -125,3 +125,4 @@ public class Main {
 //TODO UI elements
 //TODO gameplay elements; leveling and enemy progression
 //TODO main menu
+//TODO affine transform can let us rotate art so bullets can fly straight
