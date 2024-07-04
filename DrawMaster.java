@@ -4,36 +4,64 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
+
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 
 
 public class DrawMaster extends JComponent{
-    private BufferedImage img;
-
+    private ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
     @Override
     public void paint(Graphics g){
-        if (this.img==null){
+        if (this.images.size() <= 0){
             try {
-                this.img = ImageIO.read(new File("resources\\PixelBackground.PNG"));
+                for (int i = 0;i<5;i++){
+                this.images.add(ImageIO.read(new File("resources\\Background\\PixelBackground"+Integer.toString(i)+".png")));
+                }
+                
+
             } catch (IOException e) {
                 System.out.println("Failed to load background image");
             }
         }
+        
+        
         Graphics2D g2 = (Graphics2D) g;
         //background
-        int yStart = ((int)Main.worldY%img.getHeight())-img.getHeight();
-        for (int j = (Main.screenWidth/img.getWidth())+2;j>0;j--){
-            int xStart = ((int)Main.worldX%img.getWidth())-img.getWidth();
-            for (int i = (Main.screenWidth/img.getWidth())+2;i>=0;i--){
+
+        int yStart = ((int)Main.worldY%50)-50;
+        for (int j = (Main.screenHeight/50)+2;j>0;j--){
+            int xStart = ((int)Main.worldX%50)-50;
+            for (int i = (Main.screenWidth/50)+2;i>=0;i--){
+                //using world coordinates to create a random number
+                //kind of like a Linear Congruental Generator
+
+
+
+                int X = (int) Math.abs(i+(int)Main.worldX/50);
+                int Y = (int) Math.abs(j+(int)Main.worldY/50);
                 
-                g2.drawImage(img,(int) xStart,(int)yStart,null);
-                xStart+=img.getWidth();
+              
+                for (int y = 0;y<7;y++){
+                    X = ((75)*X+74)%65536;
+                    X = (X+Y)/2;
+                }
+                BufferedImage img = images.get((3*X+3)%5);
+
+                g2.drawImage(img,(int) xStart,(int)yStart,50,50,null);
+               
+
+                //Show grid
+                //g2.drawRect((int)xStart,(int)yStart,50,50);
+                xStart+=images.get(0).getWidth();
                 
             }
-            yStart+=img.getHeight();
+            yStart+=images.get(0).getHeight();
         }
+        
 
             
 
