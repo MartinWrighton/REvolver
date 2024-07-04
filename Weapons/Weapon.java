@@ -17,7 +17,7 @@ public class Weapon {
     protected double projectileSpeed;
     protected int projectileSize;
     protected double spread;
-    protected int lifetime = 1000;
+    protected int lifetime;
     protected Projectile exampleProjectile;
     public void shoot(int x,int y){
         if (this.fireProgress>this.fireDelay && this.clip>0){

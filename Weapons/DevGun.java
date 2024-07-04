@@ -11,6 +11,7 @@ public class DevGun extends Weapon{
         this.projectileSpeed = 30;
         this.projectileSize = 10;
         this.spread = 0.0000001;
+        this.lifetime = 1000;
         this.exampleProjectile = new SimpleProjectile();
     }
 }

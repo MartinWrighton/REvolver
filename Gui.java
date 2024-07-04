@@ -18,8 +18,9 @@ public class Gui extends JFrame{
         this.getContentPane().addMouseListener(mouseClick);
         this.getContentPane().addMouseMotionListener(mouseClick);
         this.getContentPane().setBackground(new Color(212,255,171));
-        this.setVisible(true);
-        
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        setUndecorated(true);
+        setVisible(true);
 
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("resources\\PixelCursor.png").getImage(),new Point(0,0),"custom cursor"));
         

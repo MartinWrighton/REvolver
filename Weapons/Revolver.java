@@ -12,6 +12,7 @@ public class Revolver extends Weapon{
         this.projectileSpeed = 0.5;
         this.projectileSize = 5;
         this.spread = 0.05;
+        this.lifetime = 1000;
         this.exampleProjectile = new SimpleProjectile();
     }
 

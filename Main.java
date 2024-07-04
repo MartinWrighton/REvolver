@@ -1,4 +1,6 @@
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,16 +9,23 @@ import java.util.Random;
 
 public class Main {
     public static ArrayList<Token> tokens = new ArrayList<Token>();
-    public static int screenWidth = 1600;
-    public static int screenHeight = 900;
-    public static Gui gui = new Gui();
+    public static int screenWidth;
+    public static int screenHeight;
+    public static Gui gui;
     public static Player player;
     public static boolean playing = true;
     public static double worldX;
     public static double worldY;
     public static double dynamicTick;
     public static void main(String[] args) throws InterruptedException{
+
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        screenWidth = gd.getDisplayMode().getWidth();
+        screenHeight = gd.getDisplayMode().getHeight();
+        Main.gui = new Gui();
         gui.add(player);//for some reason we need to add the player here and not in gui
+
+
 
         int spawntimer = 99999999;
         int tickrate = 1000000;
@@ -26,8 +35,8 @@ public class Main {
         while (playing){//mainloop
 
             if (System.nanoTime()-tickrate>timestamp){//if a tick has passed
-                if(spawntimer == 4999){
-                    System.out.print("Dynamic Tick: "+dynamicTick);
+                if(spawntimer + dynamicTick >= 5000){
+                    System.out.print("\nDynamic Tick: "+dynamicTick);
                 }
 
                 //do spawning first so that we can prevent dynamic tick
@@ -46,8 +55,8 @@ public class Main {
 
                 int elapsedNano = (int)(System.nanoTime() - timestamp);
                 dynamicTick =(double)((double)elapsedNano/tickrate);
-                if(spawntimer == 0){
-                    System.out.println("   Entities: "+tokens.size()+"   Dynamic Tick on spawn tick: "+dynamicTick);
+                if(spawntimer < 1){
+                    System.out.print("   Entities: "+tokens.size()+"   Dynamic Tick on spawn tick: "+dynamicTick);
                 }
                 
                 timestamp = System.nanoTime();

@@ -28,4 +28,5 @@ public class Cloak extends Enemy{
             System.out.println("Failed to load Cloak image");
         }
     }
+    
 }

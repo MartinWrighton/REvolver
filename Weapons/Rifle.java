@@ -11,6 +11,7 @@ public class Rifle extends Weapon{
         this.projectileSpeed = 1;
         this.projectileSize = 5;
         this.spread = 0.01;
+        this.lifetime = 1000;
         this.exampleProjectile = new SimpleProjectile();
     }
     

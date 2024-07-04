@@ -16,7 +16,7 @@ public class Player extends Creature {
     private int[] shootingAt = new int[] {0,0};
     private Weapon weapon;
     public Player(int xPos,int yPos){
-        super(Color.RED, xPos, yPos, -0.1 , 1000,50,50, 30, 50);
+        super(Color.RED, xPos, yPos, -0.1 , 10,50,50, 30, 50);
 
         this.hitbox = new Rectangle(xPos, yPos, xHit, yHit);
         this.weapon = new Revolver(this);

@@ -139,9 +139,13 @@ public class Enemy extends Creature {
         double distance = Math.sqrt(difx*difx + dify*dify);
         if(distance<100){//if enemy is close switch to attack animation
             this.animationSet = 1;
+            
         } else {
             this.animationSet = 0;
         }
+        //set size to keep aspect ratio
+        this.xSize = this.tokenImages.get(this.animationSet).get(0).getWidth()*2;//TODO consider replacing this 2 with a tokenScale attribute
+        this.ySize = this.tokenImages.get(this.animationSet).get(0).getHeight()*2;
         super.animationStep();
     }
     @Override
