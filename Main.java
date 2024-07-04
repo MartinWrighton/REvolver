@@ -26,21 +26,34 @@ public class Main {
         while (playing){//mainloop
 
             if (System.nanoTime()-tickrate>timestamp){//if a tick has passed
+                if(spawntimer == 4999){
+                    System.out.print("Dynamic Tick: "+dynamicTick);
+                }
+
+                //do spawning first so that we can prevent dynamic tick
+                //spawn new enemies
+                if (spawntimer > 5000){
+                    
+                    spawnPack(10);
+                    spawntimer = 0;
+
+                    //no dynamic ticks on spawn ticks
+                    timestamp = System.nanoTime() - tickrate;
+                } else {
+                    spawntimer+=dynamicTick;
+                }
+
+
                 int elapsedNano = (int)(System.nanoTime() - timestamp);
                 dynamicTick =(double)((double)elapsedNano/tickrate);
-
+                if(spawntimer == 0){
+                    System.out.println("   Entities: "+tokens.size()+"   Dynamic Tick on spawn tick: "+dynamicTick);
+                }
                 
                 timestamp = System.nanoTime();
 
                 
-                //spawn new enemies
-                if (spawntimer > 5000){
-                    System.out.println(tokens.size()+" "+dynamicTick);
-                    spawnPack(10);//we can handle ~150 creatures before slowdown becomes noticable
-                    spawntimer = 0;
-                } else {
-                    spawntimer+=dynamicTick;
-                }
+                
                  
                 //do token steps
                 for (int i = 0 ; i < tokens.size() ; i++){
