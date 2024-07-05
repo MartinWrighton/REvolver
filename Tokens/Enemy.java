@@ -56,11 +56,12 @@ public class Enemy extends Creature {
             newX = target.xPos + timeToPlayer*-target.moveSpeed*(target.direction[1]-target.direction[0]);
             newY = target.yPos + timeToPlayer*-target.moveSpeed*(target.direction[3]-target.direction[2]);
         }
+        /*
         if (breakCount == 0){
             newX = target.xPos;
             newY = target.yPos;
         }
-
+        */
         if (Main.showWaypoints){
             if (new Random().nextInt(1)<=1){
                 Main.tokens.add(new Waypoint(newX, newY, 10, 10,(int) this.xPos+this.xSize/2,(int)this.yPos+this.ySize/2));
@@ -190,6 +191,12 @@ public class Enemy extends Creature {
                 }
                 this.noContact.add(bullet);
             }
+        }
+        //kill enemies who get too far away
+        double difx = Math.abs(target.xPos - this.xPos);
+        double dify = Math.abs(target.yPos - this.yPos);
+        if (difx>Main.screenWidth*3||dify>Main.screenHeight*3){
+            this.die();
         }
     }
     
