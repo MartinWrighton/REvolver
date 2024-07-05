@@ -163,7 +163,7 @@ public class Main {
 //TODO shotgun
 //TODO rocket laucher + explosons
 //TODO do flamethrower properly
-//TODO do laser properly
+//TODO do laser properly, hitbox could be a line
 
 //TODO different projectiles
 

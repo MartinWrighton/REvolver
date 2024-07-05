@@ -19,7 +19,7 @@ public class Player extends Creature {
         super(Color.RED, (Main.screenWidth/2)-25, (Main.screenHeight/2)-25, -0.1 , 10000,50,50, 30, 50);
 
         this.hitbox = new Rectangle((int) this.xPos, (int) this.yPos, xHit, yHit);
-        this.weapon = new Laser(this);
+        this.weapon = new Revolver(this);
 
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();

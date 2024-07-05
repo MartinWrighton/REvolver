@@ -55,7 +55,10 @@ public class Enemy extends Creature {
             //where will the player be at that time
             newX = target.xPos + timeToPlayer*-target.moveSpeed*(target.direction[1]-target.direction[0]);
             newY = target.yPos + timeToPlayer*-target.moveSpeed*(target.direction[3]-target.direction[2]);
-
+        }
+        if (breakCount == 0){
+            newX = target.xPos;
+            newY = target.yPos;
         }
 
         if (Main.showWaypoints){
@@ -75,20 +78,28 @@ public class Enemy extends Creature {
         double movey = dify/distance;
         if (newX < this.xPos){
             this.addDirection(0, movex);
+            this.addDirection(1, 0);
         } else if (newX > this.xPos){
             this.addDirection(1, movex);
+            this.addDirection(0, 0);
         } else {
             this.addDirection(0,0);
             this.addDirection(1, 0);
         }
         if (newY < this.yPos){
             this.addDirection(2, movey);
+            this.addDirection(3, 0);
         } else if (newY > this.yPos){
             this.addDirection(3, movey);
+            this.addDirection(2, 0);
         } else {
             this.addDirection(2,0);
             this.addDirection(3, 0);
         }
+        if ((this.direction[0]>0 && direction[1]>0)||(this.direction[2]>0 && direction[3]>0)){
+            System.out.println("OOOPS");
+        }
+
     }
     @Override
     public void move(double x, double y){
