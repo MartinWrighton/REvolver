@@ -72,14 +72,15 @@ public class DrawMaster extends JComponent{
             if (token != null){
                 if (token.animationSet>=0){
                     //make sure we dont get errors
-                    token.animationSet = Math.min(token.animationSet,token.tokenImages.size()-1);
-                    token.animationFrame = Math.min(token.animationFrame,token.tokenImages.get(token.animationSet).size());
+                    int set = Math.min(token.animationSet,token.tokenImages.size()-1);
+                    int frame = (int) Math.min(token.animationFrame,token.tokenImages.get(token.animationSet).size()-1);
+                    
 
                     if (token.direction[0]<token.direction[1]){
-                        g2.drawImage(token.tokenImages.get(token.animationSet).get((int)token.animationFrame),(int) token.xPos,(int)token.yPos,token.xSize,token.ySize,null);
+                        g2.drawImage(token.tokenImages.get(set).get((int)frame),(int) token.xPos,(int)token.yPos,token.xSize,token.ySize,null);
                     } else {
 
-                        g2.drawImage(token.tokenImages.get(token.animationSet).get((int)token.animationFrame),(int) token.xPos+token.xSize,(int)token.yPos,-token.xSize,token.ySize,null);
+                        g2.drawImage(token.tokenImages.get(set).get((int)frame),(int) token.xPos+token.xSize,(int)token.yPos,-token.xSize,token.ySize,null);
                     }
                     if (i>=Main.tokens.size()){//TODO find out what is causing this
                         break;

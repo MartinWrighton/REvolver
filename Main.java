@@ -16,8 +16,8 @@ public class Main {
     public static double worldX;
     public static double worldY;
     public static double dynamicTick;
-    public static Template cloakTemplate = new Template(0.15,4,1.5);
-    public static Template knightTemplate = new Template(0.11,8,3);
+    public static Template cloakTemplate = new Template(0.12,2,1.5);
+    public static Template knightTemplate = new Template(0.1,4,3);
 
 
     //output control
@@ -148,7 +148,8 @@ public class Main {
                 if (i==0 && Main.printTemplate){
                     System.err.println("\n"+enemy.getClass()+": moveSpeed: "+((double)((int)(enemy.getTemplate().getMoveSpeed()*1000)))/1000
                                                                 +"  maxHP: "+((double)((int)(enemy.getTemplate().getMaxHP()*1000)))/1000
-                                                                +"  armor: "+((double)((int)(enemy.getTemplate().getArmor()*1000)))/1000);
+                                                                +"  armor: "+((double)((int)(enemy.getTemplate().getArmor()*1000)))/1000
+                                                                +"  score: "+enemy.getTemplate().getScore());
                 }
                 enemy.mutate();
                 enemy.step();

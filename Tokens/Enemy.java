@@ -177,6 +177,8 @@ public class Enemy extends Creature {
         }
         if (score>this.template.getScore()){
             this.template.update(this.moveSpeed, this.maxHP, this.armor, score);
+        } else {
+            this.template.scoreDecay();
         }
 
         //TODO death animations
@@ -188,12 +190,13 @@ public class Enemy extends Creature {
 
     public void mutate(){
 
-        //change each stat between +10% and -10%
+        //change each stat by a random percentage
+        double mutationRate = 0.2;
         Random random = new Random();
-        this.moveSpeed *= 0.9+random.nextDouble(0.2);
-        this.maxHP *= 0.9+random.nextDouble(0.2);
+        this.moveSpeed *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.maxHP *= 1-mutationRate/2+random.nextDouble(mutationRate);
         this.HP = this.maxHP;
-        this.armor *= 0.9+random.nextDouble(0.2);
+        this.armor *= 1-mutationRate/2+random.nextDouble(mutationRate);
     }
     public Template getTemplate(){
         return this.template;

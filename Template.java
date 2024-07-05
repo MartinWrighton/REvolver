@@ -31,4 +31,8 @@ public class Template {
     public double getScore(){
         return this.score;
     }
+    public void scoreDecay(){
+        //TODO consider making score decay by a % of the dying tokens score
+        this.score--;
+    }
 }
