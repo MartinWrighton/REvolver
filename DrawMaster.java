@@ -29,7 +29,7 @@ public class DrawMaster extends JComponent{
         
         Graphics2D g2 = (Graphics2D) g;
         //background
-        int tileSize = 50;//2x the art size seems to look good for most of my assets
+        int tileSize = 100;//2x the art size seems to look good for most of my assets
         int yStart = ((int)Main.worldY%tileSize)-tileSize;
         for (int j = (Main.screenHeight/tileSize)+2;j>0;j--){
             int xStart = ((int)Main.worldX%tileSize)-tileSize;
@@ -68,9 +68,13 @@ public class DrawMaster extends JComponent{
 
 
         for(int i = 0 ; i<Main.tokens.size();i++){
-            Token token = Main.tokens.get(i);
+            Token token = null;
+            if (i<Main.tokens.size()){
+                token = Main.tokens.get(i);
+            }
             if (token != null){
-                if (token.animationSet>=0){
+
+                if (token.animationSet>=0 && token.tokenImages.size()>0){
                     //make sure we dont get errors
                     int set = Math.min(token.animationSet,token.tokenImages.size()-1);
                     int frame = (int) Math.min(token.animationFrame,token.tokenImages.get(token.animationSet).size()-1);
@@ -94,6 +98,12 @@ public class DrawMaster extends JComponent{
                     g2.setColor(Main.tokens.get(i).color);
                     g2.drawRect((int)token.xPos,(int)token.yPos,token.xHit,token.yHit);
                     g2.fillRect((int)token.xPos,(int)token.yPos, token.xHit,token.yHit);
+                }
+
+                //Drawing pathfinding lines
+                if (token instanceof Waypoint){
+
+                    g2.drawLine((int) token.xPos,(int) token.yPos, ((Waypoint) token).getOwnerX(), ((Waypoint) token).getOwnerY());
                 }
             }
         }

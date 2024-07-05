@@ -25,19 +25,65 @@ public class Enemy extends Creature {
         double difx = Math.abs(target.xPos - this.xPos);
         double dify = Math.abs(target.yPos - this.yPos);
         double distance = Math.sqrt(difx*difx + dify*dify);
+        //attempting predictive guidance
+        
+        //how long would it take to reach the players current position
+        double timeToPlayer = distance/this.moveSpeed;
+
+
+
+        //where will the player be at that time
+        double newX = target.xPos + timeToPlayer*-target.moveSpeed*(target.direction[1]-target.direction[0]);
+        double newY = target.yPos + timeToPlayer*-target.moveSpeed*(target.direction[3]-target.direction[2]);
+
+
+
+        double oldTime = 0;
+        int breakCount = 101;
+        //recalculate trajectory
+        while(((int)oldTime < 0.9*(int)timeToPlayer ||(int)oldTime > 1.1*(int)timeToPlayer) && breakCount>0){
+            oldTime = timeToPlayer;
+            breakCount--;
+
+            difx = Math.abs(newX - this.xPos);
+            dify = Math.abs(newY - this.yPos);
+            distance = Math.sqrt(difx*difx + dify*dify);
+
+            //how long would it take to reach the players new position
+            timeToPlayer = distance/this.moveSpeed;
+            
+            //where will the player be at that time
+            newX = target.xPos + timeToPlayer*-target.moveSpeed*(target.direction[1]-target.direction[0]);
+            newY = target.yPos + timeToPlayer*-target.moveSpeed*(target.direction[3]-target.direction[2]);
+
+        }
+
+        if (Main.showWaypoints){
+            if (new Random().nextInt(1)<=1){
+                Main.tokens.add(new Waypoint(newX, newY, 10, 10,(int) this.xPos+this.xSize/2,(int)this.yPos+this.ySize/2));
+
+            }
+        }
+
+        difx = Math.abs(newX - this.xPos);
+        dify = Math.abs(newY - this.yPos);
+        distance = Math.sqrt(difx*difx + dify*dify);
+
+        
+
         double movex = difx/distance;
-        double movey = dify/distance;;
-        if (this.target.xPos < this.xPos){
+        double movey = dify/distance;
+        if (newX < this.xPos){
             this.addDirection(0, movex);
-        } else if (this.target.xPos > this.xPos){
+        } else if (newX > this.xPos){
             this.addDirection(1, movex);
         } else {
             this.addDirection(0,0);
             this.addDirection(1, 0);
         }
-        if (this.target.yPos < this.yPos){
+        if (newY < this.yPos){
             this.addDirection(2, movey);
-        } else if (this.target.yPos > this.yPos){
+        } else if (newY > this.yPos){
             this.addDirection(3, movey);
         } else {
             this.addDirection(2,0);

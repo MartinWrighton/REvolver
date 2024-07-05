@@ -115,11 +115,15 @@ public class Token extends JComponent{
         this.direction[axis] = value;
     }
     protected void animationStep(){
-        if (this.animationSet>=0){
-            this.animationFrame+=animationSpeed*Main.dynamicTick;
-            if ((int)this.animationFrame>this.tokenImages.get(this.animationSet).size()-1){
-                this.animationFrame=0;
+        if (this.tokenImages.size()>0){
+            if (this.animationSet>=0){
+                this.animationFrame+=animationSpeed*Main.dynamicTick;
+                if ((int)this.animationFrame>this.tokenImages.get(this.animationSet).size()-1){
+                    this.animationFrame=0;
+                }
             }
+        } else {
+            this.animationFrame +=animationSpeed*Main.dynamicTick;
         }
     }
     protected void preStep(){}

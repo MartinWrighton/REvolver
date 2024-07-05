@@ -15,11 +15,11 @@ public class Player extends Creature {
     private boolean isShooting = false;
     private int[] shootingAt = new int[] {0,0};
     private Weapon weapon;
-    public Player(){//                         v                         v    these are half the token dimensios
-        super(Color.RED, (Main.screenWidth/2)-25, (Main.screenHeight/2)-25, -0.1 , 10,50,50, 30, 50);
+    public Player(){//                         v                         v    these are half the token dimensions
+        super(Color.RED, (Main.screenWidth/2)-25, (Main.screenHeight/2)-25, -0.1 , 10000,50,50, 30, 50);
 
         this.hitbox = new Rectangle((int) this.xPos, (int) this.yPos, xHit, yHit);
-        this.weapon = new Revolver(this);
+        this.weapon = new Laser(this);
 
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();

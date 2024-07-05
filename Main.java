@@ -26,6 +26,7 @@ public class Main {
     public static Boolean printScore = false;
     public static Boolean showHitboxes = false;
     public static Boolean showGrid = false;
+    public static Boolean showWaypoints = true;
     public static void main(String[] args) throws InterruptedException{
 
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -98,12 +99,7 @@ public class Main {
         int xSpawn = 0;
         int ySpawn = 0;
         int zone = random.nextInt(4);
-        /*
-        //make large packs spawn on long board edges
-        if (packSize*50*2>Main.screenHeight){
-            zone = random.nextInt(2)+2;
-        }
-        */
+
 
 
         for (int i = 0; i < packSize; i++){

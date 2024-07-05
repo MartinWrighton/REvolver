@@ -8,7 +8,7 @@ public class Effect extends Token{
     @Override
     protected void animationStep(){
         super.animationStep();
-        if (this.animationFrame == 0){
+        if (this.animationFrame <= 0){
             Main.tokens.remove(this);
         }
     }

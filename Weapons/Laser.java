@@ -9,7 +9,7 @@ public class Laser extends Weapon{
         this.damage = 0.1;
         this.penetration = 0;
         this.projectileSpeed = 5;
-        this.projectileSize = 2;
+        this.projectileSize = 5;
         this.spread = 0.0001;
         this.lifetime = 1000;
         this.exampleProjectile = new SimpleProjectile();
