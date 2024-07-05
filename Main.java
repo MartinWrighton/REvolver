@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-
 public class Main {
     public static ArrayList<Token> tokens = new ArrayList<Token>();
     public static int screenWidth;
@@ -17,6 +16,16 @@ public class Main {
     public static double worldX;
     public static double worldY;
     public static double dynamicTick;
+    public static Template cloakTemplate = new Template(0.15,4,1.5);
+    public static Template knightTemplate = new Template(0.11,8,3);
+
+
+    //output control
+    public static Boolean printTicks = false;
+    public static Boolean printTemplate = true;
+    public static Boolean printScore = false;
+    public static Boolean showHitboxes = false;
+    public static Boolean showGrid = false;
     public static void main(String[] args) throws InterruptedException{
 
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -28,6 +37,7 @@ public class Main {
 
 
         int spawntimer = 99999999;
+        int spawnRate = 10000;
         int tickrate = 1000000;
         long timestamp = System.nanoTime();
 
@@ -35,13 +45,13 @@ public class Main {
         while (playing){//mainloop
 
             if (System.nanoTime()-tickrate>timestamp){//if a tick has passed
-                if(spawntimer + dynamicTick >= 5000){
+                if(spawntimer + dynamicTick >= spawnRate && Main.printTicks){
                     System.out.print("\nDynamic Tick: "+dynamicTick);
                 }
 
                 //do spawning first so that we can prevent dynamic tick
                 //spawn new enemies
-                if (spawntimer > 5000){
+                if (spawntimer > spawnRate){
                     
                     spawnPack(10);
                     spawntimer = 0;
@@ -55,7 +65,7 @@ public class Main {
 
                 int elapsedNano = (int)(System.nanoTime() - timestamp);
                 dynamicTick =(double)((double)elapsedNano/tickrate);
-                if(spawntimer < 1){
+                if(spawntimer < 1  && Main.printTicks){
                     System.out.print("   Entities: "+tokens.size()+"   Dynamic Tick on spawn tick: "+dynamicTick);
                 }
                 
@@ -128,9 +138,19 @@ public class Main {
                 Enemy enemy;
                 if (enemyType == 0){
                     enemy = new Cloak(xSpawn,ySpawn,Main.player);
+                    
                 } else {
                     enemy = new Knight(xSpawn,ySpawn,Main.player);
+                    
+                    
                 }
+                //print template stats
+                if (i==0 && Main.printTemplate){
+                    System.err.println("\n"+enemy.getClass()+": moveSpeed: "+((double)((int)(enemy.getTemplate().getMoveSpeed()*1000)))/1000
+                                                                +"  maxHP: "+((double)((int)(enemy.getTemplate().getMaxHP()*1000)))/1000
+                                                                +"  armor: "+((double)((int)(enemy.getTemplate().getArmor()*1000)))/1000);
+                }
+                enemy.mutate();
                 enemy.step();
                 Main.tokens.add(enemy);
             } else {
@@ -151,8 +171,8 @@ public class Main {
 //TODO different projectiles
 
 //TODO ranged enemies
+//TODO both player and enemy regen, with little heal effects
 
-//TODO wave spawning
 //TODO UI elements
 //TODO gameplay elements; leveling and enemy progression
 //TODO main menu

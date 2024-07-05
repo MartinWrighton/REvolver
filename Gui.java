@@ -30,7 +30,7 @@ public class Gui extends JFrame{
         draw.setVisible(false);
         draw.setVisible(true);
 
-        Player player = new Player((Main.screenWidth-25)/2,(Main.screenHeight-50)/2);
+        Player player = new Player();
         Main.tokens.add(player);
         Main.player = player;
     

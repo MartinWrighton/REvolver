@@ -15,11 +15,11 @@ public class Player extends Creature {
     private boolean isShooting = false;
     private int[] shootingAt = new int[] {0,0};
     private Weapon weapon;
-    public Player(int xPos,int yPos){
-        super(Color.RED, xPos, yPos, -0.1 , 10,50,50, 30, 50);
+    public Player(){//                         v                         v    these are half the token dimensios
+        super(Color.RED, (Main.screenWidth/2)-25, (Main.screenHeight/2)-25, -0.1 , 10,50,50, 30, 50);
 
-        this.hitbox = new Rectangle(xPos, yPos, xHit, yHit);
-        this.weapon = new Revolver(this);
+        this.hitbox = new Rectangle((int) this.xPos, (int) this.yPos, xHit, yHit);
+        this.weapon = new DevGun(this);
 
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
@@ -77,7 +77,8 @@ public class Player extends Creature {
     protected void postStep(){
         for(int i = 0 ; i<Main.tokens.size();i++){
             if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy){
-                ((Creature) Main.tokens.get(i)).die();
+                ((Enemy) Main.tokens.get(i)).hurtPlayer();
+                ((Enemy) Main.tokens.get(i)).die();
                 takeDamage(1);
             }
         }

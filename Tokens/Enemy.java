@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Enemy extends Creature {
@@ -8,11 +9,15 @@ public class Enemy extends Creature {
     private Token target;
     private ArrayList<Token> noContact = new ArrayList<Token>();//to prevent hitting same projectile again
     private double armor;
-    public Enemy(int xPos,int yPos,double moveSpeed,double maxHp,int xSize,int ySize,int xHit,int yHit, double armor, Token target){
+    private double rawDamage = 0;
+    private int hurtPlayer = 0;
+    private Template template;
+    public Enemy(int xPos,int yPos,double moveSpeed,double maxHp,int xSize,int ySize,int xHit,int yHit, double armor, Token target,Template template){
         super(Color.BLUE, xPos, yPos, moveSpeed , maxHp,xSize,ySize,xHit,yHit);
 
         this.target = target;
         this.armor = armor;
+        this.template = template;
         
     }
     @Override
@@ -150,6 +155,7 @@ public class Enemy extends Creature {
     }
     @Override
     protected void takeDamage(double damage){
+        this.rawDamage += damage;
         //armor calculation
         //the bullet is either able to penetrate the armor (damage-armor) and has a flat reduction, or it thumps against it (damage/armor) and is divided
         damage = Math.max((damage-this.armor),(damage/this.armor));
@@ -158,6 +164,38 @@ public class Enemy extends Creature {
 
     @Override
     protected void die(){
+        //calculate score
+        int distanceScoreX = (int) ((Main.screenWidth/2)-Math.abs(this.target.xPos-this.xPos));
+        distanceScoreX = 100*(distanceScoreX)/(Main.screenWidth/2);
+        int distanceScoreY = (int) ((Main.screenHeight/2)-Math.abs(this.target.yPos-this.yPos));
+        distanceScoreY = (distanceScoreY)/(Main.screenWidth/2);
+        int distanceScoreBoth = (int) Math.sqrt(distanceScoreX*distanceScoreX+distanceScoreY*distanceScoreY);
+
+        int score = (int) (distanceScoreBoth + this.rawDamage*5 + this.hurtPlayer*100);
+        if (Main.printScore){
+            System.out.println("\n Distance: "+distanceScoreBoth+"  Raw Damage: "+this.rawDamage*5+"  Hurt Player: "+this.hurtPlayer*100+"  Total: "+score);
+        }
+        if (score>this.template.getScore()){
+            this.template.update(this.moveSpeed, this.maxHP, this.armor, score);
+        }
+
+        //TODO death animations
         Main.tokens.remove(this);
+    }
+    public void hurtPlayer(){
+        this.hurtPlayer=1;
+    }
+
+    public void mutate(){
+
+        //change each stat between +10% and -10%
+        Random random = new Random();
+        this.moveSpeed *= 0.9+random.nextDouble(0.2);
+        this.maxHP *= 0.9+random.nextDouble(0.2);
+        this.HP = this.maxHP;
+        this.armor *= 0.9+random.nextDouble(0.2);
+    }
+    public Template getTemplate(){
+        return this.template;
     }
 }

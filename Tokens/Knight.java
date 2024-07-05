@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Knight extends Enemy{
     public Knight(int xPos,int yPos,Token target){
-        super(xPos, yPos, 0.09, 8, 36, 40, 36, 40, 3,target);
+        super(xPos, yPos, Main.knightTemplate.getMoveSpeed(), Main.knightTemplate.getMaxHP(), 36, 40, 36, 40, Main.knightTemplate.getArmor(),target,Main.knightTemplate);
 
         
         this.animationSpeed = 0.015;
