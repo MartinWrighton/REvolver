@@ -31,18 +31,18 @@ public class DrawMaster extends JComponent{
         
         Graphics2D g2 = (Graphics2D) g;
         //background
-
-        int yStart = ((int)Main.worldY%50)-50;
-        for (int j = (Main.screenHeight/50)+2;j>0;j--){
-            int xStart = ((int)Main.worldX%50)-50;
-            for (int i = (Main.screenWidth/50)+2;i>=0;i--){
+        int tileSize = 100;//2x the art size seems to look good for most of my assets
+        int yStart = ((int)Main.worldY%tileSize)-tileSize;
+        for (int j = (Main.screenHeight/tileSize)+2;j>0;j--){
+            int xStart = ((int)Main.worldX%tileSize)-tileSize;
+            for (int i = (Main.screenWidth/tileSize)+2;i>=0;i--){
                 //using world coordinates to create a random number
                 //kind of like a Linear Congruental Generator
+                
 
 
-
-                int X = (int) Math.abs(i+(int)Main.worldX/50);
-                int Y = (int) Math.abs(j+(int)Main.worldY/50);
+                int X = (int) Math.abs(i+(int)Main.worldX/tileSize);
+                int Y = (int) Math.abs(j+(int)Main.worldY/tileSize);
                 
               
                 for (int y = 0;y<7;y++){
@@ -51,15 +51,15 @@ public class DrawMaster extends JComponent{
                 }
                 BufferedImage img = images.get((3*X+3)%5);
 
-                g2.drawImage(img,(int) xStart,(int)yStart,50,50,null);
+                g2.drawImage(img,(int) xStart,(int)yStart,tileSize,tileSize,null);
                
 
                 //Show grid
-                //g2.drawRect((int)xStart,(int)yStart,50,50);
-                xStart+=images.get(0).getWidth();
+                //g2.drawRect((int)xStart,(int)yStart,tileSize,tileSize);
+                xStart+=tileSize;
                 
             }
-            yStart+=images.get(0).getHeight();
+            yStart+=tileSize;
         }
         
 
@@ -84,8 +84,8 @@ public class DrawMaster extends JComponent{
                     break;
                 }
                 //show hitboxes
-                g2.setColor(Main.tokens.get(i).color);
-                g2.drawRect((int)token.xPos,(int)token.yPos,token.xHit,token.yHit);
+                //g2.setColor(Main.tokens.get(i).color);
+                //g2.drawRect((int)token.xPos,(int)token.yPos,token.xHit,token.yHit);
             } else {
                 g2.setColor(Main.tokens.get(i).color);
                 g2.drawRect((int)token.xPos,(int)token.yPos,token.xHit,token.yHit);

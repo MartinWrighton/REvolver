@@ -147,12 +147,16 @@ public class Main {
 //TODO rocket laucher + explosons
 //TODO do flamethrower properly
 //TODO do laser properly
+
 //TODO different projectiles
-//TODO different enemy types
+
 //TODO ranged enemies
+
 //TODO wave spawning
 //TODO UI elements
 //TODO gameplay elements; leveling and enemy progression
-//TODO base enemy evaluation score on the closest they got (not the closest they died), the unmitigated damage they took (with little weight), and if they damaged the player (maybe)
 //TODO main menu
+
+//TODO base enemy evaluation score on the closest they got (not the closest they died), the unmitigated damage they took (with little weight), and if they damaged the player (maybe)
+
 //TODO affine transform can let us rotate art so bullets can fly straight
