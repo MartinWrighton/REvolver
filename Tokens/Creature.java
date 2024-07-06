@@ -28,7 +28,7 @@ public class Creature extends Token{
     protected void preStep(){
         this.regenProgress += Main.dynamicTick;
         if (this.regenProgress>this.regenDelay){
-            this.HP += this.regenRate;
+            this.HP += this.regenRate*Main.dynamicTick;
             if (this.HP < this.maxHP){
                 if ((int)this.regenProgress%900==0){
                     Main.tokens.add(new Heal(this.xPos+this.xSize/2,this.yPos,12,12));

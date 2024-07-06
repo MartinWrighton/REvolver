@@ -216,14 +216,19 @@ public class Enemy extends Creature {
     public void mutate(){
 
         //change each stat by a random percentage
-        double mutationRate = 0.5;
+
         Random random = new Random();
-        this.moveSpeed *= 1-mutationRate/2+random.nextDouble(mutationRate);
-        this.maxHP *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.moveSpeed *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.moveSpeed = Math.max(0.01,this.moveSpeed);
+        this.maxHP *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.maxHP = Math.max(1,this.maxHP);
         this.HP = this.maxHP;
-        this.armor *= 1-mutationRate/2+random.nextDouble(mutationRate);
-        this.regenRate *= 1-mutationRate/2+random.nextDouble(mutationRate);
-        this.regenDelay *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.armor *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.armor = Math.max(0.001,this.armor);
+        this.regenRate *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.regenRate = Math.max(0.00001,this.regenRate);
+        this.regenDelay *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.regenDelay = Math.max(1,this.regenDelay);
     }
     public Template getTemplate(){
         return this.template;

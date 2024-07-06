@@ -29,7 +29,7 @@ public class SimpleProjectile extends Projectile{
 
     @Override
     protected void end(){
-        Main.tokens.add(new BulletPop(this.xPos-this.xSize/2,this.yPos-this.ySize/2,this.xSize,this.ySize));
+        Main.tokens.add(new BulletPop(this.xPos+(this.xSize/2)-this.xSize*2,this.yPos+(this.ySize/2)-this.xSize*2,this.xSize,this.ySize));
         super.end();
     }
 

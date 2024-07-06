@@ -105,14 +105,19 @@ public class Wizard extends Enemy{
     @Override
     public void mutate(){
         //change each stat by a random percentage
-        double mutationRate = 0.5;
+
         Random random = new Random();
-        this.weapon.fireDelay *= 1-mutationRate/2+random.nextDouble(mutationRate);
-        this.weapon.clipSize *= 1-mutationRate/2+random.nextDouble(mutationRate);
-        this.weapon.reloadTime *= 1-mutationRate/2+random.nextDouble(mutationRate);
-        this.weapon.projectileSpeed *= 1-mutationRate/2+random.nextDouble(mutationRate);
-        this.weapon.projectileSize *= 1-mutationRate/2+random.nextDouble(mutationRate);
-        this.weapon.spread *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.weapon.fireDelay *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.weapon.fireDelay = Math.max(1,this.weapon.fireDelay);
+        this.weapon.clipSize *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.weapon.clipSize = Math.max(1,this.weapon.clipSize);
+        this.weapon.reloadTime *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.weapon.projectileSpeed *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.weapon.projectileSpeed = Math.max(0.01,this.weapon.projectileSpeed);
+        this.weapon.projectileSize *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.weapon.projectileSize = Math.max(1,this.weapon.projectileSize);
+        this.weapon.spread *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
+        this.weapon.spread = Math.max(0.01,this.weapon.spread);
         super.mutate();
     }
     //update weapon on death
@@ -125,9 +130,9 @@ public class Wizard extends Enemy{
         distanceScoreY = (distanceScoreY)/(Main.screenWidth/2);
         int distanceScoreBoth = (int) Math.sqrt(distanceScoreX*distanceScoreX+distanceScoreY*distanceScoreY);
 
-        int score = (int) (distanceScoreBoth + this.rawDamage*5 + this.hurtPlayer*100);
+        int score = (int) (distanceScoreBoth/10 + this.rawDamage*5 + this.hurtPlayer*100);
         if (Main.printScore){
-            System.out.println("\n Distance: "+distanceScoreBoth+"  Raw Damage: "+this.rawDamage*5+"  Hurt Player: "+this.hurtPlayer*100+"  Total: "+score);
+            System.out.println("\n !Distance: "+distanceScoreBoth+"!  Raw Damage: "+this.rawDamage*5+"  Hurt Player: "+this.hurtPlayer*100+"  Total: "+score);
         }
         if (score>this.template.getScore()){
             this.template.update(this.moveSpeed, this.maxHP, this.armor, score,this.regenRate,this.regenDelay);

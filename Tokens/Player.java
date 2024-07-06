@@ -19,7 +19,7 @@ public class Player extends Creature {
         super(Color.RED, (Main.screenWidth/2)-25, (Main.screenHeight/2)-25, -0.1 , 3,50,50, 30, 50,0.0001,3000);
 
         this.hitbox = new Rectangle((int) this.xPos, (int) this.yPos, xHit, yHit);
-        this.weapon = new SMG(this);
+        this.weapon = new Revolver(this);
 
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
@@ -77,16 +77,20 @@ public class Player extends Creature {
     @Override
     protected void postStep(){
         for(int i = 0 ; i<Main.tokens.size();i++){
-            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Enemy){
-                ((Enemy) Main.tokens.get(i)).hurtPlayer();
-                ((Enemy) Main.tokens.get(i)).die();
-                takeDamage(1);
+            if (this.hitbox.intersects(Main.tokens.get(i).hitbox)){
+                if (Main.tokens.get(i) instanceof Enemy){
+                    ((Enemy) Main.tokens.get(i)).hurtPlayer();
+                    ((Enemy) Main.tokens.get(i)).die();
+                    takeDamage(1);
+                } else if(Main.tokens.get(i) instanceof WizardProjectile){
+                    ((Enemy) ((Projectile) Main.tokens.get(i)).owner).hurtPlayer();
+                    ((Projectile) Main.tokens.get(i)).end();
+                    takeDamage(1);
+                } else {
+                    
+                }
             }
-            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof WizardProjectile){
-                ((Enemy) ((Projectile) Main.tokens.get(i)).owner).hurtPlayer();
-                ((Projectile) Main.tokens.get(i)).end();
-                takeDamage(1);
-            }
+            
         }
     }
 

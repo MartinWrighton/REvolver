@@ -3,10 +3,10 @@ public class Revolver extends Weapon{
 
     public Revolver(Token owner){
         this.owner = owner;
-        this.fireDelay = 0.3;
+        this.fireDelay = 0.2;
         this.clipSize = 6;
         this.clip = this.clipSize;
-        this.reloadTime = 3;
+        this.reloadTime = 2;
         this.damage = 5;
         this.penetration = 0;
         this.projectileSpeed = 0.5;
