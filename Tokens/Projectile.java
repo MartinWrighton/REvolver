@@ -6,11 +6,13 @@ public class Projectile extends Token implements Supplier<Projectile>{
     protected int penetration;
     protected double damage;
     protected int lifetime;
+    protected Token owner;
     public Projectile(Color color){
         super(color,0,0,0,0,0,0,0);
     }
 
-    public void fillProjectile(double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, double damage, int lifetime){
+    public void fillProjectile(Token owner, double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, double damage, int lifetime){
+        this.owner = owner;
         this.xPos = xPos;
         this.yPos = yPos;
         this.xSize = xSize;

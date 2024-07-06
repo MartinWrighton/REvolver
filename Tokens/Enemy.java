@@ -137,7 +137,7 @@ public class Enemy extends Creature {
         ArrayList<Token> currentContact = new ArrayList<Token>(this.noContact);
         this.noContact.clear();
         for(int i = 0 ; i<Main.tokens.size();i++){
-            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Projectile){
+            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof Projectile && !(Main.tokens.get(i) instanceof WizardProjectile)){
                 Projectile bullet = ((Projectile) Main.tokens.get(i));
                 
                 if (!currentContact.contains(bullet)){

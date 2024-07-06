@@ -6,17 +6,23 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-public class SimpleProjectile extends Projectile{
-    public SimpleProjectile(){
-        super(new Color(252,140,48));
+public class WizardProjectile extends Projectile{
+    public WizardProjectile(){
+        super(Color.RED);
         
 
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
-            set.add(ImageIO.read(new File("resources\\SimpleProjectile.png")));
+
+            for (int i = 0 ; i<3;i++){
+                set.add(ImageIO.read(new File("resources\\Orb\\PixelOrb"+Integer.toString(i)+".png")));
+            }
+            for (int i = 2 ; i>=0;i--){
+                set.add(ImageIO.read(new File("resources\\Orb\\PixelOrb"+Integer.toString(i)+".png")));
+            }
             this.tokenImages.add(set);
         } catch (IOException e) {
-            System.out.println("Failed to load SimpleProjectile image");
+            System.out.println("Failed to load WizardProjectile image");
         }
                 
 
@@ -24,7 +30,7 @@ public class SimpleProjectile extends Projectile{
 
     @Override
     public Projectile get() {
-        return new SimpleProjectile();
+        return new WizardProjectile();
     }
 
     @Override

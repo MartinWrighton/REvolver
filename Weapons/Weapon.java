@@ -40,7 +40,7 @@ public class Weapon {
             double movy = ydif/both;
             
             Projectile bullet = this.exampleProjectile.get();
-            bullet.fillProjectile(owner.xPos+25, owner.yPos+10, this.projectileSize, this.projectileSize, this.projectileSpeed, this.penetration, this.damage, this.lifetime);
+            bullet.fillProjectile(owner,owner.xPos+25, owner.yPos+10, this.projectileSize, this.projectileSize, this.projectileSpeed, this.penetration, this.damage, this.lifetime);
             if (x < owner.xPos){
                 bullet.addDirection(0, movx);
             } else if (x > owner.xPos){

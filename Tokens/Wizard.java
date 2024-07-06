@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class Wizard extends Enemy{
+    private WizardStaff weapon = new WizardStaff(this);
     public Wizard(int xPos,int yPos,Token target){
         super(xPos, yPos, Main.wizardTemplate.getMoveSpeed(), Main.wizardTemplate.getMaxHP(), 28, 40, 28, 40, Main.wizardTemplate.getArmor(),target,Main.wizardTemplate,Main.wizardTemplate.getRegenRate(),Main.wizardTemplate.getRegenDelay());
 
@@ -37,7 +38,7 @@ public class Wizard extends Enemy{
         double difx = Math.abs(target.xPos - this.xPos);
         double dify = Math.abs(target.yPos - this.yPos);
         double distance = Math.sqrt(difx*difx + dify*dify);
-        if(distance>600){
+        if(distance>500){
             super.pathfind();
         } else if(distance<200){
             super.pathfind();
@@ -62,7 +63,7 @@ public class Wizard extends Enemy{
         double difx = Math.abs(target.xPos - this.xPos);
         double dify = Math.abs(target.yPos - this.yPos);
         double distance = Math.sqrt(difx*difx + dify*dify);
-        if(distance<200||distance>600){//if enemy is close switch to attack animation
+        if(distance<200||distance>500){
             this.animationSet = 0;
             
         } else {
@@ -84,6 +85,19 @@ public class Wizard extends Enemy{
         } else {
             this.animationFrame +=animationSpeed*Main.dynamicTick;
         }
+    }
+
+    @Override
+    protected void preStep(){
+        double difx = Math.abs(target.xPos - this.xPos);
+        double dify = Math.abs(target.yPos - this.yPos);
+        double distance = Math.sqrt(difx*difx + dify*dify);
+        this.weapon.tick();
+        if(distance>200&&distance<500){
+            this.weapon.shoot((int)target.xPos, (int)target.yPos);  
+        }
+        
+        super.preStep();
     }
     
 }

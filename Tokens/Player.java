@@ -82,6 +82,11 @@ public class Player extends Creature {
                 ((Enemy) Main.tokens.get(i)).die();
                 takeDamage(1);
             }
+            if (this.hitbox.intersects(Main.tokens.get(i).hitbox) && Main.tokens.get(i) instanceof WizardProjectile){
+                ((Enemy) ((Projectile) Main.tokens.get(i)).owner).hurtPlayer();
+                ((Projectile) Main.tokens.get(i)).end();
+                takeDamage(1);
+            }
         }
     }
 
