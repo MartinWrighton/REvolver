@@ -2,11 +2,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
 public class Wizard extends Enemy{
-    private WizardStaff weapon = new WizardStaff(this);
+    private WizardStaff weapon = new WizardStaff(this,Main.wizardTemplate.getFireDelay(),Main.wizardTemplate.getClipSize(),Main.wizardTemplate.getReloadTime(),Main.wizardTemplate.getProjectileSpeed(),Main.wizardTemplate.getProjectileSize(),Main.wizardTemplate.getSpread());
     public Wizard(int xPos,int yPos,Token target){
         super(xPos, yPos, Main.wizardTemplate.getMoveSpeed(), Main.wizardTemplate.getMaxHP(), 28, 40, 28, 40, Main.wizardTemplate.getArmor(),target,Main.wizardTemplate,Main.wizardTemplate.getRegenRate(),Main.wizardTemplate.getRegenDelay());
 
@@ -99,5 +100,45 @@ public class Wizard extends Enemy{
         
         super.preStep();
     }
+
+    //apply the same evolving to their weapon
+    @Override
+    public void mutate(){
+        //change each stat by a random percentage
+        double mutationRate = 0.5;
+        Random random = new Random();
+        this.weapon.fireDelay *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.weapon.clipSize *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.weapon.reloadTime *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.weapon.projectileSpeed *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.weapon.projectileSize *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.weapon.spread *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        super.mutate();
+    }
+    //update weapon on death
+    @Override
+    protected void die(){
+        //calculate score
+        int distanceScoreX = (int) ((Main.screenWidth/2)-Math.abs(this.target.xPos-this.xPos));
+        distanceScoreX = 100*(distanceScoreX)/(Main.screenWidth/2);
+        int distanceScoreY = (int) ((Main.screenHeight/2)-Math.abs(this.target.yPos-this.yPos));
+        distanceScoreY = (distanceScoreY)/(Main.screenWidth/2);
+        int distanceScoreBoth = (int) Math.sqrt(distanceScoreX*distanceScoreX+distanceScoreY*distanceScoreY);
+
+        int score = (int) (distanceScoreBoth + this.rawDamage*5 + this.hurtPlayer*100);
+        if (Main.printScore){
+            System.out.println("\n Distance: "+distanceScoreBoth+"  Raw Damage: "+this.rawDamage*5+"  Hurt Player: "+this.hurtPlayer*100+"  Total: "+score);
+        }
+        if (score>this.template.getScore()){
+            this.template.update(this.moveSpeed, this.maxHP, this.armor, score,this.regenRate,this.regenDelay);
+            ((WizardTemplate) this.template).updateWeapon(this.weapon.fireDelay,this.weapon.clipSize,this.weapon.reloadTime,this.weapon.projectileSpeed,this.weapon.projectileSize,this.weapon.spread);
+        } else {
+            this.template.scoreDecay();
+        }
+
+        //TODO death animations
+        Main.tokens.remove(this);
+    }
+
     
 }

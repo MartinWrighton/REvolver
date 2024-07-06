@@ -18,7 +18,7 @@ public class Main {
     public static double dynamicTick;
     public static Template cloakTemplate = new Template(0.14,2,1.5,0.0005,5000);
     public static Template knightTemplate = new Template(0.11,4,3,0.0005,5000);
-    public static Template wizardTemplate = new Template(0.11,2,1,0.0005,5000);
+    public static WizardTemplate wizardTemplate = new WizardTemplate(0.11,2,1,0.0005,5000,0.2,3,5,0.3,15,0.2);
 
 
     //output control
@@ -151,6 +151,14 @@ public class Main {
                                                                 +"  regenRate: "+((double)((int)(enemy.getTemplate().getRegenRate()*100000)))/100000
                                                                 +"  regenDelay: "+((double)((int)(enemy.getTemplate().getRegenDelay()*1000)))/1000
                                                                 +"  score: "+enemy.getTemplate().getScore());
+                    if (enemy instanceof Wizard){
+                        System.err.println("        fireDelay: "+((double)((int)(((WizardTemplate) enemy.getTemplate()).getFireDelay()*1000)))/1000
+                                                                +"  clipSize: "+((WizardTemplate) enemy.getTemplate()).getClipSize()
+                                                                +"  reloadTime: "+((double)((int)(((WizardTemplate) enemy.getTemplate()).getReloadTime()*1000)))/1000
+                                                                +"  projectileSpeed: "+((double)((int)(((WizardTemplate) enemy.getTemplate()).getProjectileSpeed()*100000)))/100000
+                                                                +"  projectileSize: "+((double)((int)(((WizardTemplate) enemy.getTemplate()).getProjectileSize()*1000)))/1000
+                                                                +"  spread: "+((WizardTemplate) enemy.getTemplate()).getSpread());
+                    }
                 }
                 enemy.mutate();
                 enemy.step();

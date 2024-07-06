@@ -8,10 +8,10 @@ public class Enemy extends Creature {
     //this is an enemy that will attack the player
     protected Token target;
     private ArrayList<Token> noContact = new ArrayList<Token>();//to prevent hitting same projectile again
-    private double armor;
-    private double rawDamage = 0;
-    private int hurtPlayer = 0;
-    private Template template;
+    protected double armor;
+    protected double rawDamage = 0;
+    protected int hurtPlayer = 0;
+    protected Template template;
     public Enemy(int xPos,int yPos,double moveSpeed,double maxHp,int xSize,int ySize,int xHit,int yHit, double armor, Token target,Template template,double regenRate,double regenDelay){
         super(Color.BLUE, xPos, yPos, moveSpeed , maxHp,xSize,ySize,xHit,yHit,regenRate,regenDelay);
 
@@ -28,7 +28,12 @@ public class Enemy extends Creature {
         
         double newX = target.xPos;
         double newY = target.yPos;
-        
+        if (Main.showWaypoints){
+            if (new Random().nextInt(1)<=1){
+                Main.tokens.add(new Waypoint(newX, newY, 10, 10,(int) this.xPos+this.xSize/2,(int)this.yPos+this.ySize/2));
+
+            }
+        }
 
         double movex = difx/distance;
         double movey = dify/distance;
@@ -203,8 +208,9 @@ public class Enemy extends Creature {
         //TODO death animations
         Main.tokens.remove(this);
     }
+
     public void hurtPlayer(){
-        this.hurtPlayer=1;
+        this.hurtPlayer++;
     }
 
     public void mutate(){
