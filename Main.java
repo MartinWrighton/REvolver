@@ -18,6 +18,7 @@ public class Main {
     public static double dynamicTick;
     public static Template cloakTemplate = new Template(0.14,2,1.5,0.0005,5000);
     public static Template knightTemplate = new Template(0.11,4,3,0.0005,5000);
+    public static Template wizardTemplate = new Template(0.11,2,1,0.0005,5000);
 
 
     //output control
@@ -93,7 +94,7 @@ public class Main {
     public static void spawnPack(int packSize){
         Random random = new Random();
         //choose enemy type
-        int enemyType = random.nextInt(2);
+        int enemyType = random.nextInt(3);
         //random spawn location
 
         int xSpawn = 0;
@@ -135,10 +136,12 @@ public class Main {
                 if (enemyType == 0){
                     enemy = new Cloak(xSpawn,ySpawn,Main.player);
                     
-                } else {
+                } else if (enemyType ==1){
                     enemy = new Knight(xSpawn,ySpawn,Main.player);
                     
                     
+                } else {
+                    enemy = new Wizard(xSpawn,ySpawn,Main.player);
                 }
                 //print template stats
                 if (i==0 && Main.printTemplate){
@@ -170,13 +173,13 @@ public class Main {
 //TODO different projectiles
 
 //TODO ranged enemies
-//TODO both player and enemy regen, with little heal effects
+
 
 //TODO UI elements
+//TODO player model
 //TODO gameplay elements; leveling and enemy progression
 //TODO main menu
 //TODO sound
 
-//TODO base enemy evaluation score on the closest they got (not the closest they died), the unmitigated damage they took (with little weight), and if they damaged the player (maybe)
 
-//TODO affine transform can let us rotate art so bullets can fly straight
+
