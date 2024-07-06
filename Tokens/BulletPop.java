@@ -14,9 +14,9 @@ public class BulletPop extends Effect{
 
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
-                set.add(ImageIO.read(new File("resources\\PixelPop1.PNG")));
-                set.add(ImageIO.read(new File("resources\\PixelPop2.PNG")));
-                set.add(ImageIO.read(new File("resources\\PixelPop3.PNG")));
+                set.add(ImageIO.read(new File("resources\\PixelPop\\PixelPop1.PNG")));
+                set.add(ImageIO.read(new File("resources\\PixelPop\\PixelPop2.PNG")));
+                set.add(ImageIO.read(new File("resources\\PixelPop\\PixelPop3.PNG")));
                 this.tokenImages.add(set);
         } catch (IOException e) {
             System.out.println("Failed to load BulletPop image");

@@ -16,10 +16,10 @@ public class Player extends Creature {
     private int[] shootingAt = new int[] {0,0};
     private Weapon weapon;
     public Player(){//                         v                         v    these are half the token dimensions
-        super(Color.RED, (Main.screenWidth/2)-25, (Main.screenHeight/2)-25, -0.1 , 10000,50,50, 30, 50);
+        super(Color.RED, (Main.screenWidth/2)-25, (Main.screenHeight/2)-25, -0.1 , 3,50,50, 30, 50,0.0001,3000);
 
         this.hitbox = new Rectangle((int) this.xPos, (int) this.yPos, xHit, yHit);
-        this.weapon = new Revolver(this);
+        this.weapon = new SMG(this);
 
         try {
             ArrayList<BufferedImage> set = new ArrayList<BufferedImage>();
@@ -59,6 +59,7 @@ public class Player extends Creature {
         if (this.isShooting){
             this.weapon.shoot(this.shootingAt[0], this.shootingAt[1]);
         }
+        super.preStep();
     }
 
     public void move(double d, double e){

@@ -6,14 +6,14 @@ import java.util.Random;
 
 public class Enemy extends Creature {
     //this is an enemy that will attack the player
-    private Token target;
+    protected Token target;
     private ArrayList<Token> noContact = new ArrayList<Token>();//to prevent hitting same projectile again
     private double armor;
     private double rawDamage = 0;
     private int hurtPlayer = 0;
     private Template template;
-    public Enemy(int xPos,int yPos,double moveSpeed,double maxHp,int xSize,int ySize,int xHit,int yHit, double armor, Token target,Template template){
-        super(Color.BLUE, xPos, yPos, moveSpeed , maxHp,xSize,ySize,xHit,yHit);
+    public Enemy(int xPos,int yPos,double moveSpeed,double maxHp,int xSize,int ySize,int xHit,int yHit, double armor, Token target,Template template,double regenRate,double regenDelay){
+        super(Color.BLUE, xPos, yPos, moveSpeed , maxHp,xSize,ySize,xHit,yHit,regenRate,regenDelay);
 
         this.target = target;
         this.armor = armor;
@@ -25,54 +25,9 @@ public class Enemy extends Creature {
         double difx = Math.abs(target.xPos - this.xPos);
         double dify = Math.abs(target.yPos - this.yPos);
         double distance = Math.sqrt(difx*difx + dify*dify);
-        //attempting predictive guidance
         
-        //how long would it take to reach the players current position
-        double timeToPlayer = distance/this.moveSpeed;
-
-
-
-        //where will the player be at that time
-        double newX = target.xPos + timeToPlayer*-target.moveSpeed*(target.direction[1]-target.direction[0]);
-        double newY = target.yPos + timeToPlayer*-target.moveSpeed*(target.direction[3]-target.direction[2]);
-
-
-
-        double oldTime = 0;
-        int breakCount = 101;
-        //recalculate trajectory
-        while(((int)oldTime < 0.9*(int)timeToPlayer ||(int)oldTime > 1.1*(int)timeToPlayer) && breakCount>0){
-            oldTime = timeToPlayer;
-            breakCount--;
-
-            difx = Math.abs(newX - this.xPos);
-            dify = Math.abs(newY - this.yPos);
-            distance = Math.sqrt(difx*difx + dify*dify);
-
-            //how long would it take to reach the players new position
-            timeToPlayer = distance/this.moveSpeed;
-            
-            //where will the player be at that time
-            newX = target.xPos + timeToPlayer*-target.moveSpeed*(target.direction[1]-target.direction[0]);
-            newY = target.yPos + timeToPlayer*-target.moveSpeed*(target.direction[3]-target.direction[2]);
-        }
-        /*
-        if (breakCount == 0){
-            newX = target.xPos;
-            newY = target.yPos;
-        }
-        */
-        if (Main.showWaypoints){
-            if (new Random().nextInt(1)<=1){
-                Main.tokens.add(new Waypoint(newX, newY, 10, 10,(int) this.xPos+this.xSize/2,(int)this.yPos+this.ySize/2));
-
-            }
-        }
-
-        difx = Math.abs(newX - this.xPos);
-        dify = Math.abs(newY - this.yPos);
-        distance = Math.sqrt(difx*difx + dify*dify);
-
+        double newX = target.xPos;
+        double newY = target.yPos;
         
 
         double movex = difx/distance;
@@ -240,7 +195,7 @@ public class Enemy extends Creature {
             System.out.println("\n Distance: "+distanceScoreBoth+"  Raw Damage: "+this.rawDamage*5+"  Hurt Player: "+this.hurtPlayer*100+"  Total: "+score);
         }
         if (score>this.template.getScore()){
-            this.template.update(this.moveSpeed, this.maxHP, this.armor, score);
+            this.template.update(this.moveSpeed, this.maxHP, this.armor, score,this.regenRate,this.regenDelay);
         } else {
             this.template.scoreDecay();
         }
@@ -255,12 +210,14 @@ public class Enemy extends Creature {
     public void mutate(){
 
         //change each stat by a random percentage
-        double mutationRate = 0.2;
+        double mutationRate = 0.5;
         Random random = new Random();
         this.moveSpeed *= 1-mutationRate/2+random.nextDouble(mutationRate);
         this.maxHP *= 1-mutationRate/2+random.nextDouble(mutationRate);
         this.HP = this.maxHP;
         this.armor *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.regenRate *= 1-mutationRate/2+random.nextDouble(mutationRate);
+        this.regenDelay *= 1-mutationRate/2+random.nextDouble(mutationRate);
     }
     public Template getTemplate(){
         return this.template;

@@ -16,8 +16,8 @@ public class Main {
     public static double worldX;
     public static double worldY;
     public static double dynamicTick;
-    public static Template cloakTemplate = new Template(0.12,2,1.5);
-    public static Template knightTemplate = new Template(0.1,4,3);
+    public static Template cloakTemplate = new Template(0.14,2,1.5,0.0005,5000);
+    public static Template knightTemplate = new Template(0.11,4,3,0.0005,5000);
 
 
     //output control
@@ -26,7 +26,7 @@ public class Main {
     public static Boolean printScore = false;
     public static Boolean showHitboxes = false;
     public static Boolean showGrid = false;
-    public static Boolean showWaypoints = true;
+    public static Boolean showWaypoints = false;
     public static void main(String[] args) throws InterruptedException{
 
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -54,7 +54,7 @@ public class Main {
                 //spawn new enemies
                 if (spawntimer > spawnRate){
                     
-                    spawnPack(10);
+                    spawnPack(5);
                     spawntimer = 0;
 
                     //no dynamic ticks on spawn ticks
@@ -145,6 +145,8 @@ public class Main {
                     System.err.println("\n"+enemy.getClass()+": moveSpeed: "+((double)((int)(enemy.getTemplate().getMoveSpeed()*1000)))/1000
                                                                 +"  maxHP: "+((double)((int)(enemy.getTemplate().getMaxHP()*1000)))/1000
                                                                 +"  armor: "+((double)((int)(enemy.getTemplate().getArmor()*1000)))/1000
+                                                                +"  regenRate: "+((double)((int)(enemy.getTemplate().getRegenRate()*100000)))/100000
+                                                                +"  regenDelay: "+((double)((int)(enemy.getTemplate().getRegenDelay()*1000)))/1000
                                                                 +"  score: "+enemy.getTemplate().getScore());
                 }
                 enemy.mutate();
@@ -173,6 +175,7 @@ public class Main {
 //TODO UI elements
 //TODO gameplay elements; leveling and enemy progression
 //TODO main menu
+//TODO sound
 
 //TODO base enemy evaluation score on the closest they got (not the closest they died), the unmitigated damage they took (with little weight), and if they damaged the player (maybe)
 

@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Cloak extends Enemy{
     public Cloak(int xPos,int yPos,Token target){
-        super(xPos, yPos, Main.cloakTemplate.getMoveSpeed(), Main.cloakTemplate.getMaxHP(), 28, 40, 28, 40, Main.cloakTemplate.getArmor(),target,Main.cloakTemplate);
+        super(xPos, yPos, Main.cloakTemplate.getMoveSpeed(), Main.cloakTemplate.getMaxHP(), 28, 40, 28, 40, Main.cloakTemplate.getArmor(),target,Main.cloakTemplate,Main.cloakTemplate.getRegenRate(),Main.cloakTemplate.getRegenDelay());
 
         
         this.animationSpeed = 0.015;
