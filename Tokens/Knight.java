@@ -72,7 +72,7 @@ public class Knight extends Enemy{
             */
             if (Main.showWaypoints){
                 if (new Random().nextInt(1)<=1){
-                    Main.tokens.add(new Waypoint(newX, newY, 10, 10,(int) this.xPos+this.xSize/2,(int)this.yPos+this.ySize/2));
+                    Main.tokens.add(new Waypoint(newX, newY, 10, 10,(int) this.xPos+(int)this.xSize/2,(int)this.yPos+(int)this.ySize/2));
 
                 }
             }

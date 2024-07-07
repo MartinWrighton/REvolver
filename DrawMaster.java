@@ -81,10 +81,10 @@ public class DrawMaster extends JComponent{
                     
 
                     if (token.direction[0]<token.direction[1]){
-                        g2.drawImage(token.tokenImages.get(set).get((int)frame),(int) token.xPos,(int)token.yPos,token.xSize,token.ySize,null);
+                        g2.drawImage(token.tokenImages.get(set).get((int)frame),(int) token.xPos,(int)token.yPos,(int)token.xSize,(int)token.ySize,null);
                     } else {
 
-                        g2.drawImage(token.tokenImages.get(set).get((int)frame),(int) token.xPos+token.xSize,(int)token.yPos,-token.xSize,token.ySize,null);
+                        g2.drawImage(token.tokenImages.get(set).get((int)frame),(int) token.xPos+(int)token.xSize,(int)token.yPos,-(int)token.xSize,(int)token.ySize,null);
                     }
                     if (i>=Main.tokens.size()){//TODO find out what is causing this
                         break;
@@ -92,12 +92,12 @@ public class DrawMaster extends JComponent{
                     //show hitboxes
                     if (Main.showHitboxes){
                         g2.setColor(Main.tokens.get(i).color);
-                        g2.drawRect((int)token.xPos,(int)token.yPos,token.xHit,token.yHit);
+                        g2.drawRect((int)token.xPos,(int)token.yPos,(int)token.xHit,(int)token.yHit);
                     }
                 } else {
                     g2.setColor(Main.tokens.get(i).color);
-                    g2.drawRect((int)token.xPos,(int)token.yPos,token.xHit,token.yHit);
-                    g2.fillRect((int)token.xPos,(int)token.yPos, token.xHit,token.yHit);
+                    g2.drawRect((int)token.xPos,(int)token.yPos,(int)token.xHit,(int)token.yHit);
+                    g2.fillRect((int)token.xPos,(int)token.yPos, (int)token.xHit,(int)token.yHit);
                 }
 
                 //Drawing pathfinding lines

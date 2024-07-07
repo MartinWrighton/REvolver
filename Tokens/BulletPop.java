@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class BulletPop extends Effect{
-    public BulletPop(double xPos, double yPos , int xSize, int ySize){
+    public BulletPop(double xPos, double yPos , double xSize, double ySize){
         super(Color.YELLOW,xPos,yPos,0,xSize*4,ySize*4,0,0);
 
         this.animationSpeed = 0.01;

@@ -11,7 +11,7 @@ public class Projectile extends Token implements Supplier<Projectile>{
         super(color,0,0,0,0,0,0,0);
     }
 
-    public void fillProjectile(Token owner, double xPos,double yPos,int xSize,int ySize,double moveSpeed, int penetration, double damage, int lifetime){
+    public void fillProjectile(Token owner, double xPos,double yPos,double xSize,double ySize,double moveSpeed, int penetration, double damage, int lifetime){
         this.owner = owner;
         this.xPos = xPos;
         this.yPos = yPos;
@@ -23,7 +23,7 @@ public class Projectile extends Token implements Supplier<Projectile>{
         this.xHit = this.xSize;
         this.yHit = this.ySize;
         this.lifetime = lifetime;
-        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.xHit, this.yHit);
+        this.hitbox = new Rectangle((int)xPos, (int)yPos,(int) this.xHit,(int) this.yHit);
     }
 
     @Override

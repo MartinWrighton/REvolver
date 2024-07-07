@@ -12,16 +12,16 @@ public class Token extends JComponent{
     protected Color color;
     protected double moveSpeed;
     protected double[] direction = {0,0,0,0};//left/right,up/down
-    protected int xSize;
-    protected int ySize;
+    protected double xSize;
+    protected double ySize;
     protected Rectangle hitbox;
-    protected int xHit;
-    protected int yHit;
+    protected double xHit;
+    protected double yHit;
     protected ArrayList<ArrayList<BufferedImage>> tokenImages = new ArrayList<ArrayList<BufferedImage>>();
     protected int animationSet = 0;
     protected double animationFrame = 0;
     protected double animationSpeed = 0.005;
-    public Token(Color color, double xPos, double yPos, double moveSpeed, int xSize, int ySize, int xHit, int yHit){
+    public Token(Color color, double xPos, double yPos, double moveSpeed, double xSize, double ySize, double xHit, double yHit){
         this.color = color;
         this.xPos = xPos;
         this.yPos = yPos;
@@ -30,7 +30,7 @@ public class Token extends JComponent{
         this.ySize = ySize;
         this.xHit = xHit;
         this.yHit = yHit;
-        this.hitbox = new Rectangle((int)xPos, (int)yPos, this.xHit, this.yHit);
+        this.hitbox = new Rectangle((int)xPos, (int)yPos,(int) this.xHit,(int) this.yHit);
     }
     /*
     @Override
@@ -59,7 +59,7 @@ public class Token extends JComponent{
         this.xPos = this.xPos + d;
         this.yPos = this.yPos + e;
         
-        this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, this.xHit, this.yHit);
+        this.hitbox = new Rectangle((int)this.xPos, (int)this.yPos, (int) this.xHit, (int) this.yHit);
     }
 
     public void step(){

@@ -30,7 +30,7 @@ public class Enemy extends Creature {
         double newY = target.yPos;
         if (Main.showWaypoints){
             if (new Random().nextInt(1)<=1){
-                Main.tokens.add(new Waypoint(newX, newY, 10, 10,(int) this.xPos+this.xSize/2,(int)this.yPos+this.ySize/2));
+                Main.tokens.add(new Waypoint(newX, newY, (int)10, (int)10,(int) this.xPos+(int)this.xSize/2,(int)this.yPos+(int)this.ySize/2));
 
             }
         }
@@ -75,16 +75,16 @@ public class Enemy extends Creature {
         
         //jostle checks
 
-        //TODO player movement jostles so dense packs of enemies dont get moved
+
         for (int i = 0; i<Main.tokens.size();i++){
             if (Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
                 Rectangle blocker = Main.tokens.get(i).hitbox;
 
-                this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos), this.xHit, this.yHit);
+                this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos), (int)this.xHit, (int)this.yHit);
                 if (this.hitbox.intersects(blocker)){
                         x = 0;
                     //check if it is safe to accelerate in y
-                    this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+1), this.xHit, this.yHit);
+                    this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+1),(int) this.xHit, (int)this.yHit);
                     if (this.hitbox.intersects(blocker)){
                         //leave y unchanged
                     } else {
@@ -96,11 +96,11 @@ public class Enemy extends Creature {
                     }
                 }
                 //only y
-                this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+y), this.xHit, this.yHit);
+                this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+y),(int) this.xHit,(int) this.yHit);
                 if (this.hitbox.intersects(blocker)){
                          y = 0;
                     //check if it is safe to accelerate in x
-                    this.hitbox = new Rectangle((int)(this.xPos+1), (int)(this.yPos), this.xHit, this.yHit);
+                    this.hitbox = new Rectangle((int)(this.xPos+1), (int)(this.yPos),(int) this.xHit, (int)this.yHit);
                     if (this.hitbox.intersects(blocker)){
                         //leave x unchanged
                     } else {
@@ -118,13 +118,13 @@ public class Enemy extends Creature {
             if (Main.tokens.get(i) instanceof Enemy && Main.tokens.get(i) != this){
                 Rectangle blocker = Main.tokens.get(i).hitbox;
 
-                this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos), this.xHit, this.yHit);
+                this.hitbox = new Rectangle((int)(this.xPos+x), (int)(this.yPos),(int) this.xHit, (int)this.yHit);
                 if (this.hitbox.intersects(blocker)){
                         x = 0;
         
                 }
                 //only y
-                this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+y), this.xHit, this.yHit);
+                this.hitbox = new Rectangle((int)(this.xPos), (int)(this.yPos+y),(int) this.xHit,(int) this.yHit);
                 if (this.hitbox.intersects(blocker)){
                         y = 0;
                     }

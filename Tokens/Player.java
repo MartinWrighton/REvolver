@@ -18,7 +18,7 @@ public class Player extends Creature {
     public Player(){//                         v                         v    these are half the token dimensions
         super(Color.RED, (Main.screenWidth/2)-25, (Main.screenHeight/2)-25, -0.1 , 3,50,50, 30, 50,0.0001,3000);
 
-        this.hitbox = new Rectangle((int) this.xPos, (int) this.yPos, xHit, yHit);
+        this.hitbox = new Rectangle((int) this.xPos, (int) this.yPos, (int)xHit, (int)yHit);
         this.weapon = new Revolver(this);
 
         try {

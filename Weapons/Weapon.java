@@ -8,14 +8,14 @@ public class Weapon {
     protected Token owner;
     protected double fireDelay;
     protected double fireProgress=999;
-    protected int clipSize;
-    protected int clip;
+    protected double clipSize;
+    protected double clip;
     protected double reloadTime;
     protected double reloadProgress=999;
     protected double damage;
     protected int penetration;
     protected double projectileSpeed;
-    protected int projectileSize;
+    protected double projectileSize;
     protected double spread;
     protected int lifetime;
     protected Projectile exampleProjectile;

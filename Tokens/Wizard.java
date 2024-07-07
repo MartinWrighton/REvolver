@@ -108,7 +108,7 @@ public class Wizard extends Enemy{
 
         Random random = new Random();
         this.weapon.fireDelay *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
-        this.weapon.fireDelay = Math.max(1,this.weapon.fireDelay);
+        this.weapon.fireDelay = Math.max(0.0001,this.weapon.fireDelay);
         this.weapon.clipSize *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);
         this.weapon.clipSize = Math.max(1,this.weapon.clipSize);
         this.weapon.reloadTime *= 1-Main.mutationRate/2+random.nextDouble(Main.mutationRate);

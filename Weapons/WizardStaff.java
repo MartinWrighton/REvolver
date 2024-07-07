@@ -1,7 +1,7 @@
 
 public class WizardStaff extends Weapon{
 
-    public WizardStaff(Token owner,double fireDelay,int clipSize,double reloadTime,double projectileSpeed,int projectileSize,double spread){
+    public WizardStaff(Token owner,double fireDelay,double clipSize,double reloadTime,double projectileSpeed,double projectileSize,double spread){
         this.owner = owner;
         this.fireDelay = fireDelay;
         this.clipSize = clipSize;
@@ -14,7 +14,6 @@ public class WizardStaff extends Weapon{
         this.spread = spread;
         this.lifetime = 10000;
         this.exampleProjectile = new WizardProjectile();
-        //TODO have this evolve
     }
 
 }

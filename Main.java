@@ -153,7 +153,7 @@ public class Main {
                                                                 +"  score: "+enemy.getTemplate().getScore());
                     if (enemy instanceof Wizard){
                         System.err.println("            fireDelay: "+((double)((int)(((WizardTemplate) enemy.getTemplate()).getFireDelay()*1000)))/1000
-                                                                +"  clipSize: "+((WizardTemplate) enemy.getTemplate()).getClipSize()
+                                                                +"  clipSize: "+((double)((int)(((WizardTemplate) enemy.getTemplate()).getClipSize()*100000)))/100000
                                                                 +"  reloadTime: "+((double)((int)(((WizardTemplate) enemy.getTemplate()).getReloadTime()*1000)))/1000
                                                                 +"  projectileSpeed: "+((double)((int)(((WizardTemplate) enemy.getTemplate()).getProjectileSpeed()*100000)))/100000
                                                                 +"  projectileSize: "+((double)((int)(((WizardTemplate) enemy.getTemplate()).getProjectileSize()*1000)))/1000
@@ -179,8 +179,6 @@ public class Main {
 //TODO do laser properly, hitbox could be a line
 
 //TODO different projectiles
-
-//TODO ranged enemies
 
 
 //TODO UI elements

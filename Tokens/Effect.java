@@ -1,7 +1,7 @@
 import java.awt.Color;
 
 public class Effect extends Token{
-    public Effect(Color color, double xPos, double yPos, double moveSpeed, int xSize, int ySize, int xHit, int yHit){
+    public Effect(Color color, double xPos, double yPos, double moveSpeed, double xSize, double ySize, double xHit, double yHit){
         super(color,xPos,yPos,moveSpeed,xSize,ySize,xHit,yHit);
     }
 

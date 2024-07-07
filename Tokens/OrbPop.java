@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class OrbPop extends Effect{
-    public OrbPop(double xPos, double yPos , int xSize, int ySize){
+    public OrbPop(double xPos, double yPos , double xSize, double ySize){
         super(Color.RED,xPos,yPos,0,xSize*4,ySize*4,0,0);
 
         this.animationSpeed = 0.01;
