@@ -44,12 +44,11 @@ public class Gui extends JFrame{
         //menu
         this.mainMenu = new JPanel();
         this.add(mainMenu);
-        mainMenu.setBounds(0, 0, Main.screenWidth, Main.screenHeight);
+        mainMenu.setBounds(Main.screenWidth/4, Main.screenHeight/4, Main.screenWidth/2, Main.screenHeight/2);
         this.mainMenu.setVisible(true);
-        
         JButton button = new JButton("Play");
-        button.setBounds((Main.screenWidth/2)-50, (Main.screenHeight/2)-50, 100, 100);
         mainMenu.add(button);
+        button.setBounds((Main.screenWidth/8)-50, (Main.screenHeight/8)-50, 100, 100);
         button.setVisible(true);
         button.addActionListener(new ActionListener() {
 

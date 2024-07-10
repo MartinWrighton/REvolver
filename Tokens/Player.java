@@ -41,6 +41,9 @@ public class Player extends Creature {
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("S"), "sPressed");
         this.getActionMap().put("sPressed", new MoveAction(3,1));
 
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "escPressed");
+        this.getActionMap().put("escPressed", new EscapeAction());
+
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released A"), "aReleased");
         this.getActionMap().put("aReleased", new MoveAction(0,0));
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released D"), "dReleased");
