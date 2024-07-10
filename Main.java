@@ -19,6 +19,7 @@ public class Main {
     public static Template cloakTemplate = new Template(0.14,2,1.5,0.0005,5000);
     public static Template knightTemplate = new Template(0.11,4,3,0.0005,5000);
     public static WizardTemplate wizardTemplate = new WizardTemplate(0.11,2,1,0.0005,5000,0.2,3,5,0.3,15,0.2);
+    public static Boolean inMenu = true;
 
     public static double mutationRate = 0.5;
     //output control
@@ -45,48 +46,51 @@ public class Main {
 
 
         while (playing){//mainloop
-
             if (System.nanoTime()-tickrate>timestamp){//if a tick has passed
-                if(spawntimer + dynamicTick >= spawnRate && Main.printTicks){
-                    System.out.print("\nDynamic Tick: "+dynamicTick);
-                }
-
-                //do spawning first so that we can prevent dynamic tick
-                //spawn new enemies
-                if (spawntimer > spawnRate){
-                    
-                    spawnPack(5);
-                    spawntimer = 0;
-
-                    //no dynamic ticks on spawn ticks
-                    timestamp = System.nanoTime() - tickrate;
+                if (inMenu){
+                    timestamp = System.nanoTime();
+                    System.out.println();//sycronise the gui lmao
                 } else {
-                    spawntimer+=dynamicTick;
+                    if(spawntimer + dynamicTick >= spawnRate && Main.printTicks){
+                        System.out.print("\nDynamic Tick: "+dynamicTick);
+                    }
+
+                    //do spawning first so that we can prevent dynamic tick
+                    //spawn new enemies
+                    if (spawntimer > spawnRate){
+                        
+                        spawnPack(5);
+                        spawntimer = 0;
+
+                        //no dynamic ticks on spawn ticks
+                        timestamp = System.nanoTime() - tickrate;
+                    } else {
+                        spawntimer+=dynamicTick;
+                    }
+
+
+                    int elapsedNano = (int)(System.nanoTime() - timestamp);
+                    dynamicTick =(double)((double)elapsedNano/tickrate);
+                    if(spawntimer < 1  && Main.printTicks){
+                        System.out.print("   Entities: "+tokens.size()+"   Dynamic Tick on spawn tick: "+dynamicTick);
+                    }
+                    
+                    timestamp = System.nanoTime();
+
+                    
+                    
+                    
+                    //do token steps
+                    for (int i = 0 ; i < tokens.size() ; i++){
+                        tokens.get(i).step();
+                    }
+
+
+                    //redraw all tokens
+                    if (gui.draw != null){  
+                        gui.draw.repaint();
+                    }
                 }
-
-
-                int elapsedNano = (int)(System.nanoTime() - timestamp);
-                dynamicTick =(double)((double)elapsedNano/tickrate);
-                if(spawntimer < 1  && Main.printTicks){
-                    System.out.print("   Entities: "+tokens.size()+"   Dynamic Tick on spawn tick: "+dynamicTick);
-                }
-                
-                timestamp = System.nanoTime();
-
-                
-                
-                 
-                //do token steps
-                for (int i = 0 ; i < tokens.size() ; i++){
-                    tokens.get(i).step();
-                }
-
-
-                //redraw all tokens
-                if (gui.draw != null){  
-                    gui.draw.repaint();
-                }
-
             }
         }
     }
@@ -184,6 +188,7 @@ public class Main {
 //TODO UI elements
 //TODO player model
 //TODO gameplay elements; leveling and enemy progression
+//TODO leveling: three options, each with two randomly chosen stats being modified by +- a random %
 //TODO main menu
 //TODO sound
 

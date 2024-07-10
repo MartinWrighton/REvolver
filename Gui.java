@@ -1,13 +1,18 @@
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 public class Gui extends JFrame{
     public DrawMaster draw;
-
+    public JPanel mainMenu;
     public Gui(){
 
 
@@ -34,12 +39,27 @@ public class Gui extends JFrame{
         Main.tokens.add(player);
         Main.player = player;
     
-        /*
-        Enemy enemy = new Enemy(500,450,player);
-        Main.tokens.add(enemy);
-        this.add(enemy);
-        */
         
+
+        //menu
+        this.mainMenu = new JPanel();
+        this.add(mainMenu);
+        mainMenu.setBounds(0, 0, Main.screenWidth, Main.screenHeight);
+        this.mainMenu.setVisible(true);
+        
+        JButton button = new JButton("Play");
+        button.setBounds((Main.screenWidth/2)-50, (Main.screenHeight/2)-50, 100, 100);
+        mainMenu.add(button);
+        button.setVisible(true);
+        button.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.inMenu = false;
+                Main.gui.mainMenu.setVisible(false);
+            }
+            
+        });
   
     }
 
