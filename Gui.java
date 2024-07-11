@@ -14,6 +14,7 @@ public class Gui extends JFrame{
     public DrawMaster draw;
     public JPanel mainMenu;
     public JPanel pauseMenu;
+    public JPanel levelMenu;
     public Gui(){
 
 
@@ -53,8 +54,27 @@ public class Gui extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.inMenu = false;
+                Main.inMenu = "";
                 Main.gui.pauseMenu.setVisible(false);
+            }
+            
+        });
+
+        //levelMenu
+        this.levelMenu = new JPanel();
+        this.add(levelMenu);
+        levelMenu.setBounds(Main.screenWidth/4, Main.screenHeight/4, Main.screenWidth/2, Main.screenHeight/2);
+        levelMenu.setVisible(false);
+        JButton levelButton = new JButton("Level");
+        levelMenu.add(levelButton);
+        levelButton.setBounds((Main.screenWidth/4)-50, (Main.screenHeight/4)-50, 100, 100);
+
+        levelButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.inMenu = "";
+                Main.gui.levelMenu.setVisible(false);
             }
             
         });
@@ -72,7 +92,7 @@ public class Gui extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.inMenu = false;
+                Main.inMenu = "";
                 Main.gui.mainMenu.setVisible(false);
                 Main.mainWorker.execute();
             }

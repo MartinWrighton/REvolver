@@ -2,7 +2,7 @@ import java.util.List;
 
 import javax.swing.SwingWorker;
 
-public class MainWorker extends SwingWorker<Object,Object>{
+public class MainWorker extends SwingWorker<Object,String>{
 
     @Override
     protected Object doInBackground() throws Exception {
@@ -17,9 +17,9 @@ public class MainWorker extends SwingWorker<Object,Object>{
 
         while (Main.playing){//mainloop
             if (System.nanoTime()-tickrate>timestamp){//if a tick has passed
-                if (Main.inMenu){
+                if (Main.inMenu.length()>0){
                     timestamp = System.nanoTime();
-                    publish();
+                    publish(Main.inMenu);
                 } else {
                     if(spawntimer + Main.dynamicTick >= spawnRate && Main.printTicks){
                         System.out.print("\nDynamic Tick: "+Main.dynamicTick);
@@ -67,9 +67,14 @@ public class MainWorker extends SwingWorker<Object,Object>{
     }
 
     @Override
-    protected void process(List<Object> chunks){
-        Main.gui.pauseMenu.setVisible(true);
-        Main.gui.pauseMenu.repaint();
+    protected void process(List<String> chunks){
+        if (chunks.get(0)=="PAUSE"){
+            Main.gui.pauseMenu.setVisible(true);
+            Main.gui.pauseMenu.repaint();
+        } else if(chunks.get(0)=="LEVEL"){
+            Main.gui.levelMenu.setVisible(true);
+            Main.gui.levelMenu.repaint();
+        }
 
     }
 

@@ -6,7 +6,7 @@ public class EscapeAction extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Main.inMenu = true;
+        Main.inMenu = "PAUSE";
         Main.gui.pauseMenu.setVisible(true);
     }
     

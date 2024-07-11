@@ -19,14 +19,14 @@ public class Main {
     public static Template cloakTemplate = new Template(0.14,2,1.5,0.0005,5000);
     public static Template knightTemplate = new Template(0.11,4,3,0.0005,5000);
     public static WizardTemplate wizardTemplate = new WizardTemplate(0.11,2,1,0.0005,5000,0.2,3,5,0.3,15,0.2);
-    public static Boolean inMenu = true;
+    public static String inMenu = "MAIN";
     public static MainWorker mainWorker = new MainWorker();
 
     public static double mutationRate = 0.5;
     //output control
     public static Boolean printTicks = false;
-    public static Boolean printTemplate = true;
-    public static Boolean printScore = false;
+    public static Boolean printTemplate = false;
+    public static Boolean printScore = true;
     public static Boolean showHitboxes = false;
     public static Boolean showGrid = false;
     public static Boolean showWaypoints = false;

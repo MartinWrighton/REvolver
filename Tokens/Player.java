@@ -15,6 +15,7 @@ public class Player extends Creature {
     private boolean isShooting = false;
     private int[] shootingAt = new int[] {0,0};
     private Weapon weapon;
+    private int score = 0;
     public Player(){//                         v                         v    these are half the token dimensions
         super(Color.RED, (Main.screenWidth/2)-25, (Main.screenHeight/2)-25, -0.1 , 3,50,50, 30, 50,0.0001,3000);
 
@@ -58,6 +59,11 @@ public class Player extends Creature {
 
     @Override
     protected void preStep(){
+        System.out.println(this.score);
+        if (this.score>=20){
+            Main.inMenu = "LEVEL";
+            this.score = 0;
+        }
         this.weapon.tick();
         if (this.isShooting){
             this.weapon.shoot(this.shootingAt[0], this.shootingAt[1]);
@@ -107,5 +113,8 @@ public class Player extends Creature {
     }
     public void setShootingAt(int[] at){
         this.shootingAt = at;
+    }
+    public void incScore(){
+        this.score++;
     }
 }

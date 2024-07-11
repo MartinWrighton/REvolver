@@ -123,6 +123,8 @@ public class Wizard extends Enemy{
     //update weapon on death
     @Override
     protected void die(){
+        //increase player score
+        Main.player.incScore();
         //calculate score
         int distanceScoreX = (int) ((Main.screenWidth/2)-Math.abs(this.target.xPos-this.xPos));
         distanceScoreX = 100*(distanceScoreX)/(Main.screenWidth/2);
