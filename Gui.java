@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -36,14 +37,7 @@ public class Gui extends JFrame{
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("resources\\PixelCursor.png").getImage(),new Point(0,0),"custom cursor"));
         
 
-        draw = new DrawMaster();
-        this.add(draw);
-        draw.setVisible(false);
-        draw.setVisible(true);
-
-        Player player = new Player();
-        Main.tokens.add(player);
-        Main.player = player;
+        
     
         //pauseMenu
         this.pauseMenu = new JPanel();
@@ -59,7 +53,18 @@ public class Gui extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.inMenu = "";
-                Main.gui.pauseMenu.setVisible(false);
+                //Main.gui.pauseMenu.setVisible(false);
+            }
+            
+        });
+        JButton exitButton = new JButton("Exit");
+        pauseMenu.add(exitButton);
+        exitButton.setBounds((Main.screenWidth/4)-50, (Main.screenHeight/4)-50, 100, 100);
+        exitButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
             }
             
         });
@@ -77,8 +82,9 @@ public class Gui extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.inMenu = "";
-                Main.gui.levelMenu.setVisible(false);
+                //Main.gui.levelMenu.setVisible(false);
                 Main.player.applyLevel(1);
+                Main.player.resetScore();
             }
         });
         levelButton2 = new JButton("Level:2");
@@ -89,8 +95,9 @@ public class Gui extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.inMenu = "";
-                Main.gui.levelMenu.setVisible(false);
+                //Main.gui.levelMenu.setVisible(false);
                 Main.player.applyLevel(2);
+                Main.player.resetScore();
             }
         });
         levelButton3 = new JButton("Level:3");
@@ -101,8 +108,9 @@ public class Gui extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.inMenu = "";
-                Main.gui.levelMenu.setVisible(false);
+                //Main.gui.levelMenu.setVisible(false);
                 Main.player.applyLevel(3);
+                Main.player.resetScore();
             }
         });
 
@@ -119,7 +127,7 @@ public class Gui extends JFrame{
         this.mainMenu.setVisible(true);
         JButton playButton = new JButton("Play");
         mainMenu.add(playButton);
-        playButton.setBounds((Main.screenWidth/2)-50, (Main.screenHeight/2)-50, 100, 100);
+        playButton.setBounds((Main.screenWidth/2)-50, 100, 100, 100);
         playButton.setVisible(true);
         playButton.addActionListener(new ActionListener() {
 
@@ -131,9 +139,31 @@ public class Gui extends JFrame{
             }
             
         });
-
+        JLabel mainLabel = new JLabel("<html>Welcome to the test build (pretty UI pending)<br> press Play to begin! <br><br>CONTROLS<br> Use WSAD to move, the cursor to aim and LMB to shoot<br>ESC pauses the game<br><br>ENEMIES<br>Cultists are fast and will move directly towards you<br>Knights are slow but tough, and will move intelligently to cut you off<br>Wizards are fragile but possess a ranged attack<br><br>EVOLUTION<br>Each enemy is evaluated at death, and the best one chosen as the parent of the next generation of its kind<br>in this way they will evolve to threaten the player<br><br>LEVELING<br>after killing 20 enemies you will be given 3 random options to change your stats (not all of them will be good)   </html>");
+        mainMenu.add(mainLabel);
+        mainLabel.setBounds(200,200,500,500);
+        mainLabel.setVisible(true);
         
 
+
+
+
+
+
+
+
+
+
+
+
+        draw = new DrawMaster();
+        this.add(draw);
+        draw.setVisible(false);
+        draw.setVisible(true);
+
+        Player player = new Player();
+        Main.tokens.add(player);
+        Main.player = player;
         
   
     }

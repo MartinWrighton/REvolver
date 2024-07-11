@@ -75,7 +75,7 @@ public class Player extends Creature {
 
     @Override
     protected void preStep(){
-        if (this.score>=20){
+        if (this.score>=1){
             Main.inMenu = "LEVEL";
 
         }

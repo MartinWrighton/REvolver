@@ -22,6 +22,9 @@ public class MainWorker extends SwingWorker<Object,String>{
                     timestamp = System.nanoTime();
                     publish(Main.inMenu);
                 } else {
+                    //hide all menus
+                    publish("HIDE");
+
                     if(spawntimer + Main.dynamicTick >= spawnRate && Main.printTicks){
                         System.out.print("\nDynamic Tick: "+Main.dynamicTick);
                     }
@@ -72,7 +75,6 @@ public class MainWorker extends SwingWorker<Object,String>{
         if (chunks.get(0)=="PAUSE"){
             Main.gui.pauseMenu.setVisible(true);
             Main.gui.pauseMenu.repaint();
-            Main.inMenu = "HOLD";
         } else if(chunks.get(0)=="LEVEL"){
             if (Main.player.getScore() != 0){
                 //roll new stats              mvSpeed, maxHP, regenrate, regendelay, firedelay,clipsize,reloadrate,damage,spread,projspeed,projsize
@@ -109,6 +111,13 @@ public class MainWorker extends SwingWorker<Object,String>{
 
             Main.gui.levelMenu.setVisible(true);
             Main.gui.levelMenu.repaint();
+        } else if (chunks.get(0)=="HIDE"){
+            Main.gui.levelMenu.setVisible(false);
+            Main.gui.levelMenu.repaint();
+            Main.gui.pauseMenu.setVisible(false);
+            Main.gui.pauseMenu.repaint();
+            Main.gui.mainMenu.setVisible(false);
+            Main.gui.mainMenu.repaint();
         }
 
     }
