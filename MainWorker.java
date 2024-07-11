@@ -68,8 +68,8 @@ public class MainWorker extends SwingWorker<Object,Object>{
 
     @Override
     protected void process(List<Object> chunks){
-        Main.gui.mainMenu.setVisible(true);
-        Main.gui.mainMenu.repaint();
+        Main.gui.pauseMenu.setVisible(true);
+        Main.gui.pauseMenu.repaint();
 
     }
 

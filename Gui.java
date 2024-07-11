@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 public class Gui extends JFrame{
     public DrawMaster draw;
     public JPanel mainMenu;
+    public JPanel pauseMenu;
     public Gui(){
 
 
@@ -39,26 +40,48 @@ public class Gui extends JFrame{
         Main.tokens.add(player);
         Main.player = player;
     
-        
+        //pauseMenu
+        this.pauseMenu = new JPanel();
+        this.add(pauseMenu);
+        pauseMenu.setBounds(Main.screenWidth/4, Main.screenHeight/4, Main.screenWidth/2, Main.screenHeight/2);
+        pauseMenu.setVisible(false);
+        JButton resumeButton = new JButton("Resume");
+        pauseMenu.add(resumeButton);
+        resumeButton.setBounds((Main.screenWidth/4)-50, (Main.screenHeight/4)-50, 100, 100);
+        //resumeButton.setVisible(false);
+        resumeButton.addActionListener(new ActionListener() {
 
-        //menu
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.inMenu = false;
+                Main.gui.pauseMenu.setVisible(false);
+            }
+            
+        });
+
+        //mainMenu
         this.mainMenu = new JPanel();
         this.add(mainMenu);
-        mainMenu.setBounds(Main.screenWidth/4, Main.screenHeight/4, Main.screenWidth/2, Main.screenHeight/2);
+        mainMenu.setBounds(0, 0, Main.screenWidth, Main.screenHeight);
         this.mainMenu.setVisible(true);
-        JButton button = new JButton("Play");
-        mainMenu.add(button);
-        button.setBounds((Main.screenWidth/8)-50, (Main.screenHeight/8)-50, 100, 100);
-        button.setVisible(true);
-        button.addActionListener(new ActionListener() {
+        JButton playButton = new JButton("Play");
+        mainMenu.add(playButton);
+        playButton.setBounds((Main.screenWidth/2)-50, (Main.screenHeight/2)-50, 100, 100);
+        playButton.setVisible(true);
+        playButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.inMenu = false;
                 Main.gui.mainMenu.setVisible(false);
+                Main.mainWorker.execute();
             }
             
         });
+
+        
+
+        
   
     }
 

@@ -39,7 +39,7 @@ public class Main {
         gui.add(player);//for some reason we need to add the player here and not in gui
 
 
-        mainWorker.execute();
+        //mainWorker.execute(); done by clicking play now
 
         
     }

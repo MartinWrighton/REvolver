@@ -7,7 +7,7 @@ public class EscapeAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         
         Main.inMenu = true;
-        Main.gui.mainMenu.setVisible(true);
+        Main.gui.pauseMenu.setVisible(true);
     }
     
 }
