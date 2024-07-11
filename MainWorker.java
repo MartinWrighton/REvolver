@@ -100,9 +100,9 @@ public class MainWorker extends SwingWorker<Object,String>{
                 c2n2 = ((double)((int)(c2n2*1000)))/10;
                 c3n1 = ((double)((int)(c3n1*1000)))/10;
                 c3n2 = ((double)((int)(c3n2*1000)))/10;
-                Main.gui.levelButton1.setText(c1s1+" "+c1n1+"% \n"+c1s2+" "+c1n2+"%");
-                Main.gui.levelButton2.setText(c2s1+" "+c2n1+"% \n"+c2s2+" "+c2n2+"%");
-                Main.gui.levelButton3.setText(c3s1+" "+c3n1+"% \n"+c3s2+" "+c3n2+"%");
+                Main.gui.levelButton1.setText("<html>"+c1s1+" "+c1n1+"% <br>"+c1s2+" "+c1n2+"%</html>");
+                Main.gui.levelButton2.setText("<html>"+c2s1+" "+c2n1+"% <br>"+c2s2+" "+c2n2+"%</html>");
+                Main.gui.levelButton3.setText("<html>"+c3s1+" "+c3n1+"% <br>"+c3s2+" "+c3n2+"%</html>");
                 Main.player.resetScore();
             }
 
