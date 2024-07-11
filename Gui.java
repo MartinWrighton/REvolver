@@ -15,6 +15,10 @@ public class Gui extends JFrame{
     public JPanel mainMenu;
     public JPanel pauseMenu;
     public JPanel levelMenu;
+
+    public JButton levelButton1;
+    public JButton levelButton2;
+    public JButton levelButton3;
     public Gui(){
 
 
@@ -65,19 +69,48 @@ public class Gui extends JFrame{
         this.add(levelMenu);
         levelMenu.setBounds(Main.screenWidth/4, Main.screenHeight/4, Main.screenWidth/2, Main.screenHeight/2);
         levelMenu.setVisible(false);
-        JButton levelButton = new JButton("Level");
-        levelMenu.add(levelButton);
-        levelButton.setBounds((Main.screenWidth/4)-50, (Main.screenHeight/4)-50, 100, 100);
+        levelButton1 = new JButton("Level:1");
+        levelMenu.add(levelButton1);
+        levelButton1.setBounds((Main.screenWidth/4)-50, (Main.screenHeight/4)-50, 100, 100);
 
-        levelButton.addActionListener(new ActionListener() {
-
+        levelButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.inMenu = "";
                 Main.gui.levelMenu.setVisible(false);
+                Main.player.applyLevel(1);
             }
-            
         });
+        levelButton2 = new JButton("Level:2");
+        levelMenu.add(levelButton2);
+        levelButton1.setBounds((Main.screenWidth/4)-50, (Main.screenHeight/4)-50, 100, 100);
+
+        levelButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.inMenu = "";
+                Main.gui.levelMenu.setVisible(false);
+                Main.player.applyLevel(2);
+            }
+        });
+        levelButton3 = new JButton("Level:3");
+        levelMenu.add(levelButton3);
+        levelButton3.setBounds((Main.screenWidth/4)-50, (Main.screenHeight/4)-50, 100, 100);
+
+        levelButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.inMenu = "";
+                Main.gui.levelMenu.setVisible(false);
+                Main.player.applyLevel(3);
+            }
+        });
+
+
+
+
+
+
 
         //mainMenu
         this.mainMenu = new JPanel();
@@ -104,6 +137,7 @@ public class Gui extends JFrame{
         
   
     }
+    
 
     
 

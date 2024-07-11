@@ -23,10 +23,11 @@ public class Main {
     public static MainWorker mainWorker = new MainWorker();
 
     public static double mutationRate = 0.5;
+    public static double playerMutationRate = 0.5;
     //output control
     public static Boolean printTicks = false;
-    public static Boolean printTemplate = false;
-    public static Boolean printScore = true;
+    public static Boolean printTemplate = true;
+    public static Boolean printScore = false;
     public static Boolean showHitboxes = false;
     public static Boolean showGrid = false;
     public static Boolean showWaypoints = false;
