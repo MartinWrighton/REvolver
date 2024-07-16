@@ -14,16 +14,14 @@ import javax.swing.JPanel;
 public class Gui extends JFrame{
     public DrawMaster draw;
     public JPanel mainMenu;
-    public JPanel pauseMenu;
+    public PauseMenu pauseMenu = new PauseMenu();
     public JPanel levelMenu;
 
     public JButton levelButton1;
     public JButton levelButton2;
     public JButton levelButton3;
 
-    public CloakInfo cloakInfo = new CloakInfo();
-    public KnightInfo knightInfo = new KnightInfo();
-    public WizardInfo wizardInfo = new WizardInfo();
+    
     public Gui(){
 
 
@@ -41,40 +39,10 @@ public class Gui extends JFrame{
         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon("resources\\PixelCursor.png").getImage(),new Point(0,0),"custom cursor"));
         
 
-        
-    
-        //pauseMenu
-        this.pauseMenu = new JPanel();
         this.add(pauseMenu);
         pauseMenu.setBounds(Main.screenWidth/4, Main.screenHeight/4, Main.screenWidth/2, Main.screenHeight/2);
         pauseMenu.setVisible(false);
-        JButton resumeButton = new JButton("Resume");
-        pauseMenu.add(resumeButton);
-        resumeButton.setBounds((Main.screenWidth/4)-50, (Main.screenHeight/4)-50, 100, 100);
-        //resumeButton.setVisible(false);
-        resumeButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.inMenu = "";
-                //Main.gui.pauseMenu.setVisible(false);
-            }
-            
-        });
-        JButton exitButton = new JButton("Exit");
-        pauseMenu.add(exitButton);
-        exitButton.setBounds((Main.screenWidth/4)-50, (Main.screenHeight/4)-50, 100, 100);
-        exitButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-            
-        });
-        pauseMenu.add(this.cloakInfo);
-        pauseMenu.add(this.knightInfo);
-        pauseMenu.add(this.wizardInfo);
+        
 
 
 

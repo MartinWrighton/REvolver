@@ -138,6 +138,7 @@ public class Main {
 //TODO UI elements
 //TODO player model
 //TODO death animations
+//TODO game over screen
 //TODO main menu
 //TODO sound
 

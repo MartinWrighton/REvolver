@@ -25,7 +25,7 @@ public class KnightInfo extends JPanel{
 
         BufferedImage myPicture;
         try {
-            myPicture = ImageIO.read(new File("resources\\PixelKnight\\PixelKnightWalk0.png"));
+            myPicture = ImageIO.read(new File("resources\\PixelKnight\\PixelKnightAttacking8.png"));
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
             c.gridx = 0;
             c.gridy = 0;
