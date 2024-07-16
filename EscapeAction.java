@@ -7,6 +7,9 @@ public class EscapeAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         if (Main.inMenu == ""){
             Main.inMenu = "PAUSE";
+            Main.gui.cloakInfo.update();
+            Main.gui.knightInfo.update();
+            Main.gui.wizardInfo.update();
             //Main.gui.pauseMenu.setVisible(true);
         }
     }

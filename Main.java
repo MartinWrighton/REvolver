@@ -137,8 +137,7 @@ public class Main {
 
 //TODO UI elements
 //TODO player model
-//TODO gameplay elements; leveling and enemy progression
-//TODO leveling: three options, each with two randomly chosen stats being modified by +- a random %
+//TODO death animations
 //TODO main menu
 //TODO sound
 

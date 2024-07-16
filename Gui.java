@@ -20,6 +20,10 @@ public class Gui extends JFrame{
     public JButton levelButton1;
     public JButton levelButton2;
     public JButton levelButton3;
+
+    public CloakInfo cloakInfo = new CloakInfo();
+    public KnightInfo knightInfo = new KnightInfo();
+    public WizardInfo wizardInfo = new WizardInfo();
     public Gui(){
 
 
@@ -68,6 +72,12 @@ public class Gui extends JFrame{
             }
             
         });
+        pauseMenu.add(this.cloakInfo);
+        pauseMenu.add(this.knightInfo);
+        pauseMenu.add(this.wizardInfo);
+
+
+
 
         //levelMenu
         this.levelMenu = new JPanel();
